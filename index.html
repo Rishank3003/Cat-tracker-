@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CAT Prep Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,8 +31,6 @@
   --font-mono: 'DM Mono', monospace;
   --radius: 10px;
   --radius-lg: 16px;
-  --sidebar-w: 220px;
-  --bottombar-h: 60px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,15 +42,13 @@ body {
   font-size: 15px;
   line-height: 1.6;
   min-height: 100vh;
-  -webkit-tap-highlight-color: transparent;
 }
 
-/* ── LAYOUT ── */
+/* Layout */
 .app-shell { display: flex; min-height: 100vh; }
 
-/* ── SIDEBAR (desktop) ── */
 .sidebar {
-  width: var(--sidebar-w);
+  width: 220px;
   flex-shrink: 0;
   background: var(--bg2);
   border-right: 1px solid var(--border);
@@ -62,13 +58,13 @@ body {
   top: 0;
   height: 100vh;
   overflow-y: auto;
-  z-index: 20;
 }
 
 .sidebar-logo {
   padding: 28px 20px 20px;
   border-bottom: 1px solid var(--border);
 }
+
 .sidebar-logo h1 {
   font-family: var(--font-head);
   font-size: 22px;
@@ -76,6 +72,7 @@ body {
   letter-spacing: -0.5px;
   line-height: 1.1;
 }
+
 .sidebar-logo p {
   font-size: 11px;
   color: var(--text3);
@@ -103,9 +100,11 @@ body {
   width: 100%;
   text-align: left;
 }
+
 .nav-item:hover { color: var(--text2); background: var(--bg3); }
 .nav-item.active { color: var(--text); background: var(--bg4); }
 .nav-item.active .nav-icon { color: var(--accent); }
+
 .nav-icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
 
 .sidebar-footer {
@@ -116,87 +115,9 @@ body {
   font-family: var(--font-mono);
 }
 
-/* ── BOTTOM NAV (mobile) ── */
-.bottom-nav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: var(--bottombar-h);
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  z-index: 50;
-  align-items: stretch;
-  justify-content: space-around;
-  padding: 0 4px;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-.bottom-nav-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  flex: 1;
-  border: none;
-  background: none;
-  color: var(--text3);
-  font-size: 10px;
-  font-family: var(--font-mono);
-  cursor: pointer;
-  padding: 6px 2px;
-  border-radius: 8px;
-  transition: color 0.15s;
-  min-width: 0;
-}
-.bottom-nav-item .bn-icon { font-size: 18px; line-height: 1; }
-.bottom-nav-item.active { color: var(--accent); }
-.bottom-nav-item span:last-child { font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.main { flex: 1; overflow-x: hidden; }
 
-/* ── MORE DRAWER ── */
-.more-drawer {
-  display: none;
-  position: fixed;
-  bottom: calc(var(--bottombar-h) + env(safe-area-inset-bottom));
-  left: 0;
-  right: 0;
-  background: var(--bg2);
-  border-top: 1px solid var(--border2);
-  border-radius: 20px 20px 0 0;
-  z-index: 49;
-  padding: 16px 16px 8px;
-}
-.more-drawer.open { display: block; }
-.more-drawer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.more-drawer-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  padding: 12px 4px;
-  border-radius: 12px;
-  border: none;
-  background: var(--bg3);
-  color: var(--text2);
-  font-size: 11px;
-  font-family: var(--font-mono);
-  cursor: pointer;
-}
-.more-drawer-item .mdi { font-size: 20px; }
-.more-drawer-item.active { color: var(--accent); background: rgba(232,201,122,0.1); }
-.more-drawer-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 48;
-}
-.more-drawer-overlay.open { display: block; }
-
-/* ── MAIN ── */
-.main { flex: 1; overflow-x: hidden; min-width: 0; }
-
-.page { display: none; padding: 36px 40px; padding-bottom: 24px; }
+.page { display: none; padding: 36px 40px; }
 .page.active { display: block; }
 
 .page-header { margin-bottom: 28px; }
@@ -209,7 +130,7 @@ body {
 }
 .page-header p { font-size: 13px; color: var(--text3); margin-top: 4px; }
 
-/* ── CARDS ── */
+/* Cards */
 .card {
   background: var(--bg2);
   border: 1px solid var(--border);
@@ -217,6 +138,7 @@ body {
   padding: 20px;
   margin-bottom: 16px;
 }
+
 .card-title {
   font-size: 12px;
   font-weight: 600;
@@ -227,8 +149,8 @@ body {
   margin-bottom: 14px;
 }
 
-/* ── METRICS ── */
-.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 12px; margin-bottom: 20px; }
+/* Metric grid */
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin-bottom: 20px; }
 .metric-card {
   background: var(--bg3);
   border: 1px solid var(--border);
@@ -239,11 +161,11 @@ body {
 .metric-val { font-size: 28px; font-weight: 600; color: var(--text); letter-spacing: -1px; }
 .metric-sub { font-size: 11px; color: var(--text3); margin-top: 3px; }
 
-/* ── CHARTS ── */
+/* Charts */
 .chart-wrap { position: relative; }
 .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 
-/* ── FORMS ── */
+/* Forms */
 .form-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 14px; }
 .form-field { display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 11px; color: var(--text3); font-family: var(--font-mono); letter-spacing: 0.3px; }
@@ -257,18 +179,17 @@ input, select, textarea {
   padding: 8px 12px;
   outline: none;
   transition: border-color 0.15s;
-  -webkit-appearance: none;
-  appearance: none;
 }
 input:focus, select:focus, textarea:focus { border-color: var(--accent); }
 input[type=number] { width: 80px; }
 input[type=date] { width: 150px; }
-input[type=text] { min-width: 160px; }
-select { min-width: 110px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%236b6860' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+input[type=text] { min-width: 180px; }
+select { min-width: 110px; cursor: pointer; }
 textarea { width: 100%; min-height: 70px; resize: vertical; }
+
 option { background: var(--bg3); }
 
-/* ── BUTTONS ── */
+/* Buttons */
 .btn {
   background: var(--accent);
   color: #0e0f0d;
@@ -281,24 +202,26 @@ option { background: var(--bg3); }
   cursor: pointer;
   transition: opacity 0.15s, transform 0.1s;
   flex-shrink: 0;
-  touch-action: manipulation;
 }
 .btn:hover { opacity: 0.88; }
-.btn:active { transform: scale(0.97); }
-.btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border2); }
+.btn:active { transform: scale(0.98); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border2);
+}
 .btn-ghost:hover { background: var(--bg3); color: var(--text); }
-.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger { background: var(--danger); }
 .btn-sm { padding: 5px 12px; font-size: 12px; }
-.btn-icon { padding: 7px 10px; font-size: 14px; }
 
-/* ── PROGRESS ── */
+/* Progress bars */
 .prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .prog-label { font-size: 13px; width: 110px; flex-shrink: 0; color: var(--text2); }
 .prog-track { flex: 1; height: 6px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
 .prog-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
 .prog-pct { font-size: 12px; color: var(--text3); width: 36px; text-align: right; font-family: var(--font-mono); }
 
-/* ── DATA ROWS ── */
+/* Table-like rows */
 .data-row {
   display: flex;
   align-items: center;
@@ -309,7 +232,7 @@ option { background: var(--bg3); }
 }
 .data-row:last-child { border-bottom: none; }
 
-/* ── BADGES ── */
+/* Badges */
 .badge {
   display: inline-block;
   font-size: 10px;
@@ -318,7 +241,6 @@ option { background: var(--bg3); }
   border-radius: 20px;
   font-family: var(--font-mono);
   letter-spacing: 0.3px;
-  white-space: nowrap;
 }
 .badge-high { background: rgba(232,120,122,0.15); color: var(--danger); }
 .badge-medium { background: rgba(232,184,122,0.15); color: var(--warn); }
@@ -326,10 +248,40 @@ option { background: var(--bg3); }
 .badge-varc { background: rgba(232,201,122,0.15); color: var(--varc); }
 .badge-dilr { background: rgba(122,184,232,0.15); color: var(--dilr); }
 .badge-quant { background: rgba(122,232,176,0.15); color: var(--quant); }
+.badge-done { background: rgba(122,232,176,0.1); color: var(--text3); text-decoration: line-through; }
 
-/* ── TARGET ── */
-.target-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; margin-bottom: 20px; }
-.target-card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+/* Heatmap */
+.heatmap { display: block; }
+.hc { height: 16px; border-radius: 3px; background: var(--bg4); transition: background 0.2s; }
+.hc:hover { opacity: 0.8; }
+.hc-1 { background: rgba(122,232,176,0.2); }
+.hc-2 { background: rgba(122,232,176,0.45); }
+.hc-3 { background: rgba(122,232,176,0.7); }
+.hc-4 { background: #7ae8b0; }
+.hm-legend { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; color: var(--text3); font-family: var(--font-mono); }
+.hm-sq { width: 11px; height: 11px; border-radius: 2px; }
+
+/* Topic grid */
+.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; }.topic-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.topic-card:hover { border-color: var(--border2); }
+.topic-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.topic-meta { font-size: 11px; color: var(--text3); font-family: var(--font-mono); margin-top: 5px; }
+
+/* Target planner */
+.target-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 12px; margin-bottom: 20px; }
+.target-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
 .target-sec-label { font-size: 11px; font-family: var(--font-mono); letter-spacing: 0.5px; margin-bottom: 8px; }
 .target-score-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
 .target-score { font-size: 26px; font-weight: 600; letter-spacing: -1px; }
@@ -338,7 +290,7 @@ option { background: var(--bg3); }
 .target-bar-fill { height: 100%; border-radius: 2px; transition: width 0.5s; }
 .target-diff { font-size: 11px; font-family: var(--font-mono); margin-top: 5px; }
 
-/* ── TIMELINE ── */
+/* Timeline */
 .timeline { position: relative; padding-left: 20px; }
 .timeline::before { content:''; position:absolute; left:6px; top:0; bottom:0; width:1px; background: var(--border2); }
 .tl-item { position: relative; padding-bottom: 18px; }
@@ -347,62 +299,55 @@ option { background: var(--bg3); }
 .tl-dot.active { background: var(--accent); border-color: var(--accent); }
 .tl-date { font-size: 10px; color: var(--text3); font-family: var(--font-mono); margin-bottom: 2px; }
 .tl-label { font-size: 13px; color: var(--text2); }
+.tl-sub { font-size: 11px; color: var(--text3); }
 
-/* ── PILL TOGGLE ── */
-.pill-toggle { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 3px; gap: 2px; margin-bottom: 16px; width: fit-content; flex-wrap: wrap; }
-.pill-opt { padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; color: var(--text3); border: none; background: none; font-family: var(--font-body); transition: all 0.15s; touch-action: manipulation; }
+/* AI section */
+.ai-bubble {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text2);
+  margin-bottom: 10px;
+}
+.ai-bubble b, .ai-bubble strong { color: var(--text); font-weight: 500; }
+.ai-heading { font-size: 11px; color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.5px; margin-bottom: 6px; }
+
+/* Pill toggle */
+.pill-toggle { display: flex; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 3px; gap: 2px; margin-bottom: 16px; width: fit-content; }
+.pill-opt {
+  padding: 5px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  cursor: pointer; color: var(--text3); border: none; background: none; font-family: var(--font-body); transition: all 0.15s;
+}
 .pill-opt.active { background: var(--bg4); color: var(--text); }
 
-/* ── MODAL ── */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; align-items: center; justify-content: center; padding: 16px; }
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7); z-index: 100;
+  align-items: center; justify-content: center;
+}
 .modal-overlay.open { display: flex; }
-.modal { background: var(--bg2); border: 1px solid var(--border2); border-radius: var(--radius-lg); padding: 24px; width: 440px; max-width: 100%; max-height: 90vh; overflow-y: auto; }
+.modal {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 400px;
+  max-width: 95vw;
+}
 .modal h3 { font-family: var(--font-head); font-size: 20px; margin-bottom: 16px; }
 .modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
 
-/* ── SECTION TABS ── */
-.section-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-.sec-tab { padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid var(--border2); background: transparent; color: var(--text3); font-family: var(--font-mono); transition: all 0.15s; touch-action: manipulation; }
-.sec-tab.active-varc { background: rgba(232,201,122,0.15); color: var(--varc); border-color: rgba(232,201,122,0.3); }
-.sec-tab.active-dilr { background: rgba(122,184,232,0.15); color: var(--dilr); border-color: rgba(122,184,232,0.3); }
-.sec-tab.active-quant { background: rgba(122,232,176,0.15); color: var(--quant); border-color: rgba(122,232,176,0.3); }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
 
-/* ── CHECKBOX ── */
-.check-row { display:flex; align-items:center; gap:8px; }
-.check-row input[type=checkbox] { width:18px; height:18px; accent-color: var(--success); cursor:pointer; flex-shrink:0; }
-
-/* ── TOPIC GROUPS ── */
-.topic-group { margin-bottom: 8px; grid-column: 1 / -1; }
-.topic-group-header { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; transition:border-color 0.15s; gap:12px; }
-.topic-group-header:hover { border-color: var(--border2); }
-.topic-group-arrow { font-size: 9px; color: var(--text3); transition: transform 0.2s; flex-shrink:0; }
-.topic-group-name { font-size: 13px; font-weight: 500; color: var(--text2); flex-shrink:0; }
-.topic-group-body { padding-left: 12px; border-left: 2px solid var(--border); margin-left: 7px; }
-
-/* ── CLOUD SYNC ── */
-.cloud-modal { max-width: 480px; }
-.code-box {
-  background: var(--bg4);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  padding: 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  word-break: break-all;
-  color: var(--text2);
-  max-height: 120px;
-  overflow-y: auto;
-  margin: 8px 0;
-  line-height: 1.5;
-}
-.sync-tabs { display: flex; gap: 4px; margin-bottom: 14px; }
-.sync-tab { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border2); background: transparent; color: var(--text3); font-size: 12px; font-family: var(--font-mono); cursor: pointer; transition: all 0.15s; }
-.sync-tab.active { background: var(--bg4); color: var(--text); border-color: var(--border2); }
-
-/* ── HEATMAP ── */
-.heatmap { display: block; }
-
-/* ── UTILITY ── */
+/* Utility */
 .flex { display: flex; }
 .items-center { align-items: center; }
 .gap-8 { gap: 8px; }
@@ -415,89 +360,123 @@ option { background: var(--bg3); }
 .text-mono { font-family: var(--font-mono); }
 .empty-state { text-align: center; padding: 28px; color: var(--text3); font-size: 13px; }
 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-.topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; }
-.topic-card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; transition: border-color 0.15s; }
-.topic-card:hover { border-color: var(--border2); }
 
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+.section-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.sec-tab {
+  padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  cursor: pointer; border: 1px solid var(--border2); background: transparent;
+  color: var(--text3); font-family: var(--font-mono); transition: all 0.15s;
+}
+.sec-tab.active-varc { background: rgba(232,201,122,0.15); color: var(--varc); border-color: rgba(232,201,122,0.3); }
+.sec-tab.active-dilr { background: rgba(122,184,232,0.15); color: var(--dilr); border-color: rgba(122,184,232,0.3); }
+.sec-tab.active-quant { background: rgba(122,232,176,0.15); color: var(--quant); border-color: rgba(122,232,176,0.3); }
 
-/* ── MOBILE RESPONSIVE ── */
+.check-row { display:flex; align-items:center; gap:8px; }
+.check-row input[type=checkbox] { width:16px; height:16px; accent-color: var(--success); cursor:pointer; }
+
+/* Topic group dropdowns */
+.topic-group { margin-bottom: 8px; }
+.topic-group-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; background: var(--bg3);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  cursor: pointer; transition: border-color 0.15s; gap: 12px;
+}
+.topic-group-header:hover { border-color: var(--border2); }
+.topic-group-arrow { font-size: 9px; color: var(--text3); transition: transform 0.2s; flex-shrink:0; }
+.topic-group-name { font-size: 13px; font-weight: 500; color: var(--text2); flex-shrink:0; }
+.topic-group-body { padding-left: 12px; border-left: 2px solid var(--border); margin-left: 7px; }
+
 @media (max-width: 768px) {
-  .sidebar { display: none; }
-  .bottom-nav { display: flex; }
-  .main { padding-bottom: calc(var(--bottombar-h) + env(safe-area-inset-bottom)); }
-
-  .page { padding: 20px 16px 16px; }
-  .page.active { display: block; }
-
+  .app-shell { flex-direction: column; }
+  /* Sidebar becomes a bottom nav bar */
+  .sidebar {
+    width: 100%; height: auto; position: fixed; bottom: 0; left: 0; top: auto;
+    flex-direction: row; border-right: none; border-top: 1px solid var(--border);
+    z-index: 50; background: var(--bg2); overflow: visible;
+  }
+  .sidebar-logo { display: none; }
+  .sidebar-footer { display: none; }
+  .sidebar-nav {
+    display: flex; flex-direction: row; padding: 4px; width: 100%;
+    overflow-x: auto; gap: 2px; -webkit-overflow-scrolling: touch;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .nav-item {
+    flex-direction: column; gap: 2px; padding: 6px 10px; margin: 0;
+    min-width: 60px; flex-shrink: 0; font-size: 10px; text-align: center;
+    border-radius: 8px;
+  }
+  .nav-item span:last-child { font-size: 9px; white-space: nowrap; }
+  .nav-icon { font-size: 16px; width: auto; }
+  /* Main content gets bottom padding so nav doesn't cover it */
+  .main { padding-bottom: 70px; }
+  .page { padding: 20px 14px; }
+  .page-header h2 { font-size: 22px; }
   .charts-row { grid-template-columns: 1fr; }
   .metric-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .metric-card { padding: 12px 14px; }
   .metric-val { font-size: 22px; }
-
-  .form-group { flex-direction: column; gap: 10px; }
+  /* Forms stack vertically */
+  .form-group { flex-direction: column; align-items: stretch; gap: 10px; }
   .form-field { width: 100%; }
-  .form-field input, .form-field select { width: 100% !important; min-width: 0 !important; }
-  input[type=number] { width: 100% !important; }
-  input[type=date] { width: 100% !important; }
-
-  .btn { width: 100%; justify-content: center; padding: 11px 16px; }
-  .btn-sm { width: auto; padding: 7px 14px; }
-  .btn-icon { width: auto; }
-  .flex .btn-sm { width: auto; }
-  .flex .btn-danger { width: auto; }
-
-  .charts-row .card .chart-wrap { height: 160px !important; }
-
-  .data-row { flex-wrap: wrap; gap: 6px; }
-  .target-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .target-score { font-size: 22px; }
-
-  .page-header h2 { font-size: 24px; }
-
-  .topic-group-header { padding: 10px 12px; }
+  .form-field input, .form-field select { width: 100% !important; }
+  .form-group .btn { width: 100%; }
+  /* Cards full width, tighter padding */
+  .card { padding: 14px; }
+  /* Topic sub-exercise cards: single column on phone */
   .topic-grid { grid-template-columns: 1fr; }
-
-  .hm-cell-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-  /* mock table scroll */
-  .mock-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
-  .prog-label { width: 80px; font-size: 12px; }
-
-  .section-tabs { gap: 4px; }
-  .sec-tab { padding: 5px 10px; font-size: 11px; }
+  /* Data rows wrap better */
+  .data-row { flex-wrap: wrap; font-size: 12px; gap: 6px; }
+  /* Touch-friendly tap targets */
+  .nav-item, .btn, .pill-opt, .sec-tab, .topic-card { min-height: 38px; }
+  /* Prevent iOS auto-zoom on input focus (needs >=16px) */
+  input, select, textarea { font-size: 16px !important; }
+  /* Modals fit screen */
+  .modal { width: 94vw; }
+  /* Heatmap stays scrollable */
+  .heatmap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 }
 
-@media (max-width: 400px) {
-  .metric-grid { grid-template-columns: 1fr 1fr; }
-  .target-grid { grid-template-columns: 1fr; }
-  .page { padding: 16px 12px 12px; }
+@media (max-width: 420px) {
+  .metric-grid { grid-template-columns: 1fr; }
+  .nav-item { min-width: 54px; padding: 6px 6px; }
 }
 </style>
 </head>
 <body>
 
 <div class="app-shell">
-<!-- SIDEBAR (desktop) -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <h1>CAT<br>Tracker</h1>
     <p id="sidebar-exam-year">CAT 2026</p>
   </div>
   <nav class="sidebar-nav">
-    <button class="nav-item active" onclick="navigate('dashboard',event)"><span class="nav-icon">◈</span><span>Dashboard</span></button>
-    <button class="nav-item" onclick="navigate('study',event)"><span class="nav-icon">⏱</span><span>Study log</span></button>
-    <button class="nav-item" onclick="navigate('mocks',event)"><span class="nav-icon">📋</span><span>Mock tests</span></button>
-    <button class="nav-item" onclick="navigate('topics',event)"><span class="nav-icon">◎</span><span>Topics</span></button>
-    <button class="nav-item" onclick="navigate('weak',event)"><span class="nav-icon">⚡</span><span>Completion</span></button>
-    <button class="nav-item" onclick="navigate('targets',event)"><span class="nav-icon">◉</span><span>Targets</span></button>
-    <button class="nav-item" onclick="navigate('revision',event)"><span class="nav-icon">📅</span><span>Revision</span></button>
-    <button class="nav-item" onclick="navigate('settings',event)"><span class="nav-icon">⚙</span><span>Settings</span></button>
-    <button class="nav-item" onclick="openCloudModal()" style="margin-top:8px;border-top:1px solid var(--border);padding-top:12px"><span class="nav-icon">☁</span><span>Sync / Backup</span></button>
+    <button class="nav-item active" onclick="navigate('dashboard')">
+      <span class="nav-icon">◈</span><span>Dashboard</span>
+    </button>
+    <button class="nav-item" onclick="navigate('study')">
+      <span class="nav-icon">⏱</span><span>Study log</span>
+    </button>
+    <button class="nav-item" onclick="navigate('mocks')">
+      <span class="nav-icon">📋</span><span>Mock tests</span>
+    </button>
+    <button class="nav-item" onclick="navigate('topics')">
+      <span class="nav-icon">◎</span><span>Topics</span>
+    </button>
+    <button class="nav-item" onclick="navigate('weak')">
+      <span class="nav-icon">⚡</span><span>Completion</span>
+    </button>
+    <button class="nav-item" onclick="navigate('targets')">
+      <span class="nav-icon">◉</span><span>Targets</span>
+    </button>
+    <button class="nav-item" onclick="navigate('revision')">
+      <span class="nav-icon">📅</span><span>Revision</span>
+    </button>
+    <button class="nav-item" onclick="navigate('settings')">
+      <span class="nav-icon">⚙</span><span>Settings</span>
+    </button>
   </nav>
   <div class="sidebar-footer" id="sidebar-days-left"></div>
 </aside>
@@ -515,11 +494,11 @@ option { background: var(--bg3); }
   <div class="charts-row">
     <div class="card">
       <div class="card-title">Weekly study hours</div>
-      <div class="chart-wrap" style="height:180px"><canvas id="hoursChart"></canvas></div>
+      <div class="chart-wrap" style="height:180px"><canvas id="hoursChart" role="img" aria-label="Weekly study hours bar chart">Weekly study hours.</canvas></div>
     </div>
     <div class="card">
       <div class="card-title">Mock score trend</div>
-      <div class="chart-wrap" style="height:180px"><canvas id="scoreChart"></canvas></div>
+      <div class="chart-wrap" style="height:180px"><canvas id="scoreChart" role="img" aria-label="Mock score line chart">Mock test scores.</canvas></div>
     </div>
   </div>
   <div class="card">
@@ -534,22 +513,29 @@ option { background: var(--bg3); }
 
 <!-- STUDY LOG -->
 <section class="page" id="page-study">
-  <div class="page-header"><h2>Study log</h2><p>Track your daily study sessions</p></div>
+  <div class="page-header">
+    <h2>Study log</h2>
+    <p>Track your daily study sessions</p>
+  </div>
   <div class="card">
     <div class="card-title">Log session</div>
     <div class="form-group">
       <div class="form-field"><label>Date</label><input type="date" id="s-date"></div>
       <div class="form-field"><label>Section</label>
-        <select id="s-sec"><option value="VARC">VARC</option><option value="DILR">DILR</option><option value="Quant">Quant</option></select>
+        <select id="s-sec">
+          <option value="VARC">VARC</option>
+          <option value="DILR">DILR</option>
+          <option value="Quant">Quant</option>
+        </select>
       </div>
       <div class="form-field"><label>Hours</label><input type="number" id="s-hrs" min="0.5" max="16" step="0.5" value="2"></div>
-      <div class="form-field"><label>Topic / Notes</label><input type="text" id="s-note" placeholder="e.g. RC passages, Number theory..."></div>
-      <button class="btn" onclick="logStudy()">Add session</button>
+      <div class="form-field"><label>Topic / Notes</label><input type="text" id="s-note" placeholder="e.g. RC passages, Number theory..." style="min-width:200px"></div>
+      <button class="btn" onclick="logStudy()" style="align-self:flex-end">Add session</button>
     </div>
   </div>
   <div class="card">
     <div class="card-title">Activity heatmap — today → Nov 29, 2026</div>
-    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);margin-bottom:8px">Mon → Sun · scroll to see more</div>
+    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);margin-bottom:8px">Mon → Sun · hover for details</div>
     <div class="heatmap" id="heatmap"></div>
   </div>
   <div class="card">
@@ -560,48 +546,54 @@ option { background: var(--bg3); }
 
 <!-- MOCK TESTS -->
 <section class="page" id="page-mocks">
-  <div class="page-header"><h2>Mock tests</h2><p>Log and analyse your mock test performance</p></div>
+  <div class="page-header">
+    <h2>Mock tests</h2>
+    <p>Log and analyse your mock test performance</p>
+  </div>
   <div class="card">
     <div class="card-title">Add mock result</div>
     <div class="form-group">
       <div class="form-field"><label>Date</label><input type="date" id="m-date"></div>
-      <div class="form-field"><label>Mock name</label><input type="text" id="m-name" placeholder="e.g. SimCAT 1"></div>
+      <div class="form-field"><label>Mock name</label><input type="text" id="m-name" placeholder="e.g. AIMCAT 2401"></div>
       <div class="form-field"><label>VARC (/72)</label><input type="number" id="m-varc" min="-26" max="72" value="40" oninput="updateTotalPreview()"></div>
       <div class="form-field"><label>DILR (/60)</label><input type="number" id="m-dilr" min="-26" max="60" value="32" oninput="updateTotalPreview()"></div>
       <div class="form-field"><label>QA (/66)</label><input type="number" id="m-qa" min="-26" max="66" value="35" oninput="updateTotalPreview()"></div>
       <div class="form-field">
         <label>Total (auto)</label>
-        <div id="m-total-preview" style="background:var(--bg4);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 14px;font-size:16px;font-weight:600;color:var(--accent);font-family:var(--font-mono);text-align:center">107</div>
+        <div id="m-total-preview" style="background:var(--bg4);border:1px solid var(--border2);border-radius:var(--radius);padding:8px 14px;font-size:16px;font-weight:600;color:var(--accent);font-family:var(--font-mono);min-width:70px;text-align:center">107</div>
       </div>
       <div class="form-field"><label>Percentile (est.)</label><input type="number" id="m-pct" min="0" max="100" step="0.01" placeholder="99.5"></div>
-      <button class="btn" onclick="addMock()">Add result</button>
+      <button class="btn" onclick="addMock()" style="align-self:flex-end">Add result</button>
     </div>
-    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">Total out of 198</div>
+    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">Total out of 198 · auto-calculated from the three sections</div>
   </div>
   <div class="charts-row">
     <div class="card">
       <div class="card-title">Total score trend</div>
-      <div class="chart-wrap" id="total-chart-wrap" style="height:200px"><canvas id="totalChart"></canvas></div>
+      <div class="chart-wrap" id="total-chart-wrap" style="height:200px"><canvas id="totalChart" role="img" aria-label="Total score trend">Total score trend.</canvas></div>
     </div>
     <div class="card">
       <div class="card-title">Percentile trend</div>
-      <div class="chart-wrap" id="pct-chart-wrap" style="height:200px"><canvas id="pctChart"></canvas></div>
+      <div class="chart-wrap" id="pct-chart-wrap" style="height:200px"><canvas id="pctChart" role="img" aria-label="Percentile trend">Percentile trend.</canvas></div>
     </div>
   </div>
   <div class="card">
     <div class="card-title">Score trend by section</div>
-    <div id="mock-trend-legend" style="display:flex;gap:14px;font-size:11px;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono);flex-wrap:wrap"></div>
-    <div class="chart-wrap" style="height:200px"><canvas id="mockTrendChart"></canvas></div>
+    <div id="mock-trend-legend" style="display:flex;gap:14px;font-size:11px;color:var(--text3);margin-bottom:8px;font-family:var(--font-mono)"></div>
+    <div class="chart-wrap" style="height:200px"><canvas id="mockTrendChart" role="img" aria-label="Section score trend">Mock scores.</canvas></div>
   </div>
   <div class="card">
     <div class="card-title">All mocks</div>
-    <div class="mock-scroll"><div id="mock-list"><div class="empty-state">No mocks added yet</div></div></div>
+    <div id="mock-list"><div class="empty-state">No mocks added yet</div></div>
   </div>
 </section>
 
 <!-- TOPICS -->
 <section class="page" id="page-topics">
-  <div class="page-header"><h2>Topic progress</h2><p>Mark exercises as done</p></div>
+  <div class="page-header">
+    <h2>Topic progress</h2>
+    <p>Click any topic card to update progress and accuracy</p>
+  </div>
   <div class="section-tabs">
     <button class="sec-tab active-varc" onclick="setTopicSection('VARC',this)">VARC</button>
     <button class="sec-tab" onclick="setTopicSection('DILR',this)">DILR</button>
@@ -616,34 +608,42 @@ option { background: var(--bg3); }
       </div>
       <div class="form-field"><label>Topic name</label><input type="text" id="nt-name" placeholder="Topic name"></div>
       <div class="form-field"><label>Category (optional)</label><input type="text" id="nt-cat" placeholder="e.g. Arithmetic"></div>
-      <button class="btn btn-ghost btn-sm" onclick="addTopic()">Add topic</button>
+      <button class="btn btn-ghost btn-sm" onclick="addTopic()" style="align-self:flex-end">Add topic</button>
     </div>
   </div>
 </section>
 
-<!-- COMPLETION -->
+<!-- WEAK AREAS -->
 <section class="page" id="page-weak">
-  <div class="page-header"><h2>Completion tracker</h2><p>What's done and pending across all sections</p></div>
+  <div class="page-header">
+    <h2>Completion tracker</h2>
+    <p>What's done and what's still pending across all sections</p>
+  </div>
   <div class="metric-grid" id="completion-metrics"></div>
   <div class="charts-row">
     <div class="card">
       <div class="card-title">Completion by section</div>
-      <div class="chart-wrap" style="height:220px"><canvas id="radarChart"></canvas></div>
+      <div class="chart-wrap" style="height:220px"><canvas id="radarChart" role="img" aria-label="Completion radar">Completion radar chart.</canvas></div>
     </div>
     <div class="card">
-      <div class="card-title">Least complete topics</div>
+      <div class="card-title">Least complete parent topics</div>
       <div id="weak-list"></div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">All topics by completion</div>
+    <div class="card-title">All parent topics by completion</div>
     <div id="all-weak-list"></div>
   </div>
 </section>
 
 <!-- TARGETS -->
 <section class="page" id="page-targets">
-  <div class="page-header"><h2>Target planner</h2><p>Set score targets, track daily goals</p></div>
+  <div class="page-header">
+    <h2>Study target planner</h2>
+    <p>Set score targets, track daily goals, plan your exam journey</p>
+  </div>
+
+  <!-- Score targets -->
   <div class="card">
     <div class="card-title">Score targets</div>
     <div class="target-grid" id="target-cards"></div>
@@ -652,20 +652,24 @@ option { background: var(--bg3); }
       <div class="form-field"><label>DILR target (/60)</label><input type="number" id="t-dilr" min="0" max="60"></div>
       <div class="form-field"><label>QA target (/66)</label><input type="number" id="t-qa" min="0" max="66"></div>
       <div class="form-field"><label>Target percentile</label><input type="number" id="t-pct" min="0" max="100" step="0.01"></div>
-      <button class="btn btn-ghost btn-sm" onclick="saveTargets()">Update targets</button>
+      <button class="btn btn-ghost btn-sm" onclick="saveTargets()" style="align-self:flex-end">Update targets</button>
     </div>
   </div>
+
+  <!-- Daily study targets -->
   <div class="card">
     <div class="card-title">Daily study targets</div>
     <div class="form-group">
-      <div class="form-field"><label>Target hrs/day</label><input type="number" id="t-daily-hrs" min="1" max="16" step="0.5" value="6"></div>
+      <div class="form-field"><label>Target hours/day</label><input type="number" id="t-daily-hrs" min="1" max="16" step="0.5" value="6"></div>
       <div class="form-field"><label>VARC hrs/day</label><input type="number" id="t-varc-hrs" min="0" max="8" step="0.5" value="2"></div>
       <div class="form-field"><label>DILR hrs/day</label><input type="number" id="t-dilr-hrs" min="0" max="8" step="0.5" value="2"></div>
       <div class="form-field"><label>Quant hrs/day</label><input type="number" id="t-quant-hrs" min="0" max="8" step="0.5" value="2"></div>
-      <button class="btn btn-ghost btn-sm" onclick="saveDailyTargets()">Save</button>
+      <button class="btn btn-ghost btn-sm" onclick="saveDailyTargets()" style="align-self:flex-end">Save</button>
     </div>
     <div id="daily-target-summary"></div>
   </div>
+
+  <!-- Exam countdown + milestones -->
   <div class="charts-row">
     <div class="card">
       <div class="card-title">Countdown & pace</div>
@@ -676,19 +680,22 @@ option { background: var(--bg3); }
       <div class="form-group" style="margin-bottom:10px">
         <div class="form-field"><label>Milestone</label><input type="text" id="ms-name" placeholder="e.g. Finish Quant syllabus"></div>
         <div class="form-field"><label>Target date</label><input type="date" id="ms-date"></div>
-        <button class="btn btn-ghost btn-sm" onclick="addMilestone()">Add</button>
+        <button class="btn btn-ghost btn-sm" onclick="addMilestone()" style="align-self:flex-end">Add</button>
       </div>
       <div class="timeline" id="milestone-list"></div>
     </div>
   </div>
+
+  <!-- Mocks plan -->
   <div class="card">
     <div class="card-title">Mock test plan</div>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:14px">Plan how many mocks you'll take each phase</p>
     <div class="form-group">
-      <div class="form-field"><label>Phase name</label><input type="text" id="ph-name" placeholder="e.g. Phase 1"></div>
+      <div class="form-field"><label>Phase name</label><input type="text" id="ph-name" placeholder="e.g. Phase 1 — Foundation"></div>
       <div class="form-field"><label>Start date</label><input type="date" id="ph-start"></div>
       <div class="form-field"><label>End date</label><input type="date" id="ph-end"></div>
       <div class="form-field"><label>Target mocks</label><input type="number" id="ph-mocks" min="1" max="50" value="5"></div>
-      <button class="btn btn-ghost btn-sm" onclick="addPhase()">Add phase</button>
+      <button class="btn btn-ghost btn-sm" onclick="addPhase()" style="align-self:flex-end">Add phase</button>
     </div>
     <div id="phase-list"></div>
   </div>
@@ -696,11 +703,14 @@ option { background: var(--bg3); }
 
 <!-- REVISION -->
 <section class="page" id="page-revision">
-  <div class="page-header"><h2>Revision planner</h2><p>Schedule and track revision sessions</p></div>
+  <div class="page-header">
+    <h2>Revision planner</h2>
+    <p>Schedule and track your revision sessions</p>
+  </div>
   <div class="card">
     <div class="card-title">Add revision task</div>
     <div class="form-group">
-      <div class="form-field"><label>Topic</label><input type="text" id="r-topic" placeholder="e.g. P&C / Probability"></div>
+      <div class="form-field"><label>Topic</label><input type="text" id="r-topic" placeholder="e.g. P&C / Probability" style="min-width:200px"></div>
       <div class="form-field"><label>Section</label>
         <select id="r-sec"><option value="VARC">VARC</option><option value="DILR">DILR</option><option value="Quant">Quant</option></select>
       </div>
@@ -709,7 +719,7 @@ option { background: var(--bg3); }
         <select id="r-pri"><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select>
       </div>
       <div class="form-field"><label>Notes</label><input type="text" id="r-note" placeholder="Optional"></div>
-      <button class="btn" onclick="addRevision()">Add task</button>
+      <button class="btn" onclick="addRevision()" style="align-self:flex-end">Add task</button>
     </div>
   </div>
   <div class="pill-toggle">
@@ -722,67 +732,50 @@ option { background: var(--bg3); }
 
 <!-- SETTINGS -->
 <section class="page" id="page-settings">
-  <div class="page-header"><h2>Settings</h2><p>Personalise your tracker</p></div>
+  <div class="page-header">
+    <h2>Settings</h2>
+    <p>Personalise your tracker</p>
+  </div>
   <div class="card">
     <div class="card-title">Exam details</div>
     <div class="form-group">
       <div class="form-field"><label>Your name</label><input type="text" id="cfg-name" placeholder="Your name"></div>
       <div class="form-field"><label>CAT exam date</label><input type="date" id="cfg-examdate"></div>
       <div class="form-field"><label>Target college</label><input type="text" id="cfg-college" placeholder="e.g. IIM Ahmedabad"></div>
-      <button class="btn btn-ghost btn-sm" onclick="saveSettings()">Save</button>
+      <button class="btn btn-ghost btn-sm" onclick="saveSettings()" style="align-self:flex-end">Save</button>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">Cloud sync & backup</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:14px">Generate a sync code to transfer your data to another device — no account needed.</p>
-    <div class="flex gap-8" style="flex-wrap:wrap">
-      <button class="btn btn-ghost btn-sm" onclick="openCloudModal()">☁ Open sync panel</button>
+    <div class="card-title">Sync across devices (cloud code)</div>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:14px">Generate a code that contains all your data. Copy it, then paste it into the tracker on another device (phone, laptop) to load everything — no files, no accounts.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div>
+        <button class="btn btn-sm" onclick="generateSyncCode()" style="margin-bottom:8px">Generate my code</button>
+        <span id="sync-size" style="font-size:11px;color:var(--text3);font-family:var(--font-mono);margin-left:8px"></span>
+        <textarea id="sync-code-out" placeholder="Your code will appear here…" readonly style="width:100%;min-height:70px;font-family:var(--font-mono);font-size:11px;resize:vertical"></textarea>
+        <button class="btn btn-ghost btn-sm" onclick="copySyncCode()" style="margin-top:6px" id="sync-copy-btn">Copy code</button>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:12px">
+        <label style="font-size:12px;color:var(--text3);font-family:var(--font-mono);display:block;margin-bottom:6px">Paste a code here to load data on this device:</label>
+        <textarea id="sync-code-in" placeholder="Paste code from another device…" style="width:100%;min-height:70px;font-family:var(--font-mono);font-size:11px;resize:vertical"></textarea>
+        <button class="btn btn-sm" onclick="loadSyncCode()" style="margin-top:6px">Load this code</button>
+        <div id="sync-status" style="font-size:12px;font-family:var(--font-mono);margin-top:8px"></div>
+      </div>
     </div>
   </div>
   <div class="card">
     <div class="card-title">Data management</div>
-    <div class="flex gap-8" style="flex-wrap:wrap">
-      <button class="btn btn-ghost btn-sm" onclick="exportData()">Export JSON</button>
-      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">Import JSON</button>
+    <div class="flex gap-8">
+      <button class="btn btn-ghost btn-sm" onclick="exportData()">Export JSON backup</button>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">Import backup</button>
       <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
       <button class="btn btn-danger btn-sm" onclick="confirmReset()">Reset all data</button>
     </div>
-    <p class="text-sm text-muted mt-8">All data is stored locally in your browser.</p>
+    <p class="text-sm text-muted mt-8">All data is stored locally in your browser. Use the cloud code above or export to move it between devices.</p>
   </div>
 </section>
 
 </main>
-</div>
-
-<!-- BOTTOM NAV (mobile) -->
-<nav class="bottom-nav" id="bottom-nav">
-  <button class="bottom-nav-item active" onclick="navigate('dashboard',event)" data-page="dashboard">
-    <span class="bn-icon">◈</span><span>Home</span>
-  </button>
-  <button class="bottom-nav-item" onclick="navigate('study',event)" data-page="study">
-    <span class="bn-icon">⏱</span><span>Study</span>
-  </button>
-  <button class="bottom-nav-item" onclick="navigate('mocks',event)" data-page="mocks">
-    <span class="bn-icon">📋</span><span>Mocks</span>
-  </button>
-  <button class="bottom-nav-item" onclick="navigate('topics',event)" data-page="topics">
-    <span class="bn-icon">◎</span><span>Topics</span>
-  </button>
-  <button class="bottom-nav-item" id="more-btn" onclick="toggleMoreDrawer()">
-    <span class="bn-icon">⋯</span><span>More</span>
-  </button>
-</nav>
-
-<!-- MORE DRAWER overlay -->
-<div class="more-drawer-overlay" id="more-overlay" onclick="closeMoreDrawer()"></div>
-<div class="more-drawer" id="more-drawer">
-  <div class="more-drawer-grid">
-    <button class="more-drawer-item" onclick="navigate('weak',event);closeMoreDrawer()" data-page="weak"><span class="mdi">⚡</span><span>Completion</span></button>
-    <button class="more-drawer-item" onclick="navigate('targets',event);closeMoreDrawer()" data-page="targets"><span class="mdi">◉</span><span>Targets</span></button>
-    <button class="more-drawer-item" onclick="navigate('revision',event);closeMoreDrawer()" data-page="revision"><span class="mdi">📅</span><span>Revision</span></button>
-    <button class="more-drawer-item" onclick="navigate('settings',event);closeMoreDrawer()" data-page="settings"><span class="mdi">⚙</span><span>Settings</span></button>
-    <button class="more-drawer-item" onclick="openCloudModal();closeMoreDrawer()"><span class="mdi">☁</span><span>Sync</span></button>
-  </div>
 </div>
 
 <!-- TOPIC EDIT MODAL -->
@@ -802,120 +795,7 @@ option { background: var(--bg3); }
   </div>
 </div>
 
-<!-- CLOUD SYNC MODAL -->
-<div class="modal-overlay" id="cloud-modal">
-  <div class="modal cloud-modal">
-    <h3>☁ Sync & Backup</h3>
-    <p style="font-size:13px;color:var(--text3);margin-bottom:16px">Generate a code to copy your data to another device. No internet or account needed — just copy and paste.</p>
-    <div class="sync-tabs">
-      <button class="sync-tab active" onclick="switchSyncTab('export',this)">Generate code</button>
-      <button class="sync-tab" onclick="switchSyncTab('import',this)">Load from code</button>
-    </div>
-
-    <!-- EXPORT -->
-    <div id="sync-export-panel">
-      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">Your data compressed into a portable code. Copy it, save it in notes, or send it to yourself.</p>
-      <button class="btn" onclick="generateSyncCode()" style="width:100%;margin-bottom:10px">Generate sync code</button>
-      <div id="sync-code-output" style="display:none">
-        <div class="code-box" id="sync-code-box"></div>
-        <div class="flex gap-8" style="margin-top:8px;flex-wrap:wrap">
-          <button class="btn btn-ghost btn-sm" onclick="copySyncCode()">Copy code</button>
-          <button class="btn btn-ghost btn-sm" onclick="shareSyncCode()">Share</button>
-        </div>
-        <p style="font-size:11px;color:var(--text3);margin-top:8px;font-family:var(--font-mono)" id="sync-code-stats"></p>
-      </div>
-    </div>
-
-    <!-- IMPORT -->
-    <div id="sync-import-panel" style="display:none">
-      <p style="font-size:13px;color:var(--text2);margin-bottom:10px">Paste a sync code generated from another device to load that data here.</p>
-      <textarea id="sync-import-input" placeholder="Paste your sync code here..." style="width:100%;min-height:100px;font-family:var(--font-mono);font-size:11px;margin-bottom:10px"></textarea>
-      <div id="sync-import-preview" style="display:none;margin-bottom:10px;padding:10px 12px;background:var(--bg3);border-radius:var(--radius);font-size:12px;color:var(--text2);font-family:var(--font-mono)"></div>
-      <div class="flex gap-8" style="flex-wrap:wrap">
-        <button class="btn btn-ghost btn-sm" onclick="previewSyncCode()">Preview</button>
-        <button class="btn btn-sm" onclick="loadSyncCode()" id="sync-load-btn" style="display:none">Load this data</button>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn btn-ghost btn-sm" onclick="closeCloudModal()">Close</button>
-    </div>
-  </div>
-</div>
-
 <script>
-// ─── LZSTRING (simple compression for sync codes) ───────────────────
-// Lightweight LZ-based compression, no external dependency
-const LZS = (function(){
-  function compress(input) {
-    if (!input) return '';
-    let d={},dp={},i=0,o=0,w='',c,wc,a=[];
-    for(let i=0;i<256;i++)d[String.fromCharCode(i)]=i;
-    let next=256,bits=9,maxBits=16;
-    for(let i=0;i<input.length;i++){
-      c=input[i]; wc=w+c;
-      if(d[wc]!==undefined){w=wc;}
-      else{
-        a.push(d[w]);
-        if(next>=(1<<bits))bits=Math.min(bits+1,maxBits);
-        d[wc]=next++;
-        w=c;
-      }
-    }
-    if(w!=='')a.push(d[w]);
-    return btoa(String.fromCharCode(...a.map(x=>x&0xFF))+a.map(x=>String.fromCharCode((x>>8)&0xFF)).join(''))
-      .replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
-  }
-  function decompress(input) {
-    if (!input) return '';
-    try {
-      // simple passthrough – we'll use JSON directly
-      return null;
-    } catch(e){ return null; }
-  }
-  return { compress, decompress };
-})();
-
-// Better: use built-in CompressionStream if available, else base64
-async function compressData(str) {
-  if (typeof CompressionStream !== 'undefined') {
-    try {
-      const enc = new TextEncoder().encode(str);
-      const cs = new CompressionStream('deflate-raw');
-      const writer = cs.writable.getWriter();
-      writer.write(enc); writer.close();
-      const out = await new Response(cs.readable).arrayBuffer();
-      const bytes = new Uint8Array(out);
-      let binary = '';
-      bytes.forEach(b => binary += String.fromCharCode(b));
-      return 'Z:' + btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
-    } catch(e) {}
-  }
-  // Fallback: plain base64
-  return 'B:' + btoa(unescape(encodeURIComponent(str))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');
-}
-
-async function decompressData(code) {
-  if (code.startsWith('Z:')) {
-    const b64 = code.slice(2).replace(/-/g,'+').replace(/_/g,'/');
-    const binary = atob(b64);
-    const bytes = new Uint8Array(binary.length);
-    for (let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
-    const ds = new DecompressionStream('deflate-raw');
-    const writer = ds.writable.getWriter();
-    writer.write(bytes); writer.close();
-    const buf = await new Response(ds.readable).arrayBuffer();
-    return new TextDecoder().decode(buf);
-  }
-  if (code.startsWith('B:')) {
-    const b64 = code.slice(2).replace(/-/g,'+').replace(/_/g,'/');
-    return decodeURIComponent(escape(atob(b64)));
-  }
-  // Try raw base64 for old codes
-  try { return decodeURIComponent(escape(atob(code.replace(/-/g,'+').replace(/_/g,'/')+('='.repeat((4-code.length%4)%4))))); } catch(e){}
-  return null;
-}
-
 // ─── STATE ───────────────────────────────────────────────────────────
 const STORAGE_KEY = 'cat_tracker_v10';
 
@@ -924,29 +804,109 @@ const DEFAULT_STATE = {
   targets: { varc: 55, dilr: 42, qa: 50, percentile: 99, dailyHrs: 6, varcHrs: 2, dilrHrs: 2, quantHrs: 2 },
   studyLogs: [],
   mocks: [],
-  topics: (function(){
-    const SUBS=[{suffix:'Class Exercise',weight:15},{suffix:'Practice Exercise (Basic)',weight:15},{suffix:'Practice Exercise (Advanced)',weight:20},{suffix:'BMT',weight:20},{suffix:'Round 2',weight:15},{suffix:'Round 3',weight:15}];
-    function expand(list){
-      const arr=[];
-      list.forEach(qt=>SUBS.forEach(sub=>arr.push({name:qt.name+' — '+sub.suffix,pct:0,attempts:0,correct:0,category:qt.category,parentTopic:qt.name,subType:sub.suffix,weight:sub.weight})));
+  topics: (function() {
+    const SUBS = [
+      { suffix: 'Class Exercise', weight: 15 },
+      { suffix: 'Practice Exercise (Basic)', weight: 15 },
+      { suffix: 'Practice Exercise (Advanced)', weight: 20 },
+      { suffix: 'BMT', weight: 20 },
+      { suffix: 'Round 2', weight: 15 },
+      { suffix: 'Round 3', weight: 15 }
+    ];
+    function expand(topicList) {
+      const arr = [];
+      topicList.forEach(qt => {
+        SUBS.forEach(sub => {
+          arr.push({
+            name: qt.name + ' — ' + sub.suffix,
+            pct: 0, attempts: 0, correct: 0,
+            category: qt.category,
+            parentTopic: qt.name,
+            subType: sub.suffix,
+            weight: sub.weight
+          });
+        });
+      });
       return arr;
     }
     return {
       VARC: expand([
-        {name:'VA 1.1 | Introduction to VARC',category:'VA Module 1'},{name:'VA 1.2 | Reading for Purpose',category:'VA Module 1'},{name:'VA 1.3 | Summary Questions',category:'VA Module 1'},{name:'VA 1.4 | Source, Style & Tone',category:'VA Module 1'},{name:'VA 1.5 | Specific Questions',category:'VA Module 1'},
-        {name:'VA 2.1 | Critical Reasoning: Argument Structure, Inference & Assumptions',category:'VA Module 2'},{name:'VA 2.2 | Critical Reasoning: Strengthen/Weaken/Parallel/Paradox',category:'VA Module 2'},{name:'VA 2.3 | RC: Inference, Logical Structure & Application',category:'VA Module 2'},{name:'VA 2.4 | Reading Comprehension Practice 1',category:'VA Module 2'},{name:'VA 2.5 | Critical Reasoning: Practice',category:'VA Module 2'},
-        {name:'VA 3.1 | Essential VA Skills',category:'VA Module 3'},{name:'VA 3.2 | Jumbled Paragraphs',category:'VA Module 3'},{name:'VA 3.3 | Odd Sentence Questions',category:'VA Module 3'},{name:'VA 3.4 | Summary Questions',category:'VA Module 3'},{name:'VA 3.5 | VA Practice 1',category:'VA Module 3'},
-        {name:'VA 4.1 | Abstract Passages',category:'VA Module 4'},{name:'VA 4.2 | Complex Stems / CAT-like RC',category:'VA Module 4'},{name:'VA 4.3 | Paragraph Completion',category:'VA Module 4'},{name:'VA 4.4 | Verbal Ability: Practice 2',category:'VA Module 4'},{name:'VA 4.5 | Reading Comprehension: Practice 2',category:'VA Module 4'}
+        { name: 'VA 1.1 | Introduction to VARC', category: 'VA Module 1' },
+        { name: 'VA 1.2 | Reading for Purpose', category: 'VA Module 1' },
+        { name: 'VA 1.3 | Summary Questions', category: 'VA Module 1' },
+        { name: 'VA 1.4 | Source, Style & Tone', category: 'VA Module 1' },
+        { name: 'VA 1.5 | Specific Questions', category: 'VA Module 1' },
+        { name: 'VA 2.1 | Critical Reasoning: Argument Structure, Inference & Assumptions', category: 'VA Module 2' },
+        { name: 'VA 2.2 | Critical Reasoning: Strengthen/Weaken/Parallel/Paradox', category: 'VA Module 2' },
+        { name: 'VA 2.3 | RC: Inference, Logical Structure & Application', category: 'VA Module 2' },
+        { name: 'VA 2.4 | Reading Comprehension Practice 1', category: 'VA Module 2' },
+        { name: 'VA 2.5 | Critical Reasoning: Practice', category: 'VA Module 2' },
+        { name: 'VA 3.1 | Essential VA Skills', category: 'VA Module 3' },
+        { name: 'VA 3.2 | Jumbled Paragraphs', category: 'VA Module 3' },
+        { name: 'VA 3.3 | Odd Sentence Questions', category: 'VA Module 3' },
+        { name: 'VA 3.4 | Summary Questions', category: 'VA Module 3' },
+        { name: 'VA 3.5 | VA Practice 1', category: 'VA Module 3' },
+        { name: 'VA 4.1 | Abstract Passages', category: 'VA Module 4' },
+        { name: 'VA 4.2 | Complex Stems / CAT-like RC', category: 'VA Module 4' },
+        { name: 'VA 4.3 | Paragraph Completion', category: 'VA Module 4' },
+        { name: 'VA 4.4 | Verbal Ability: Practice 2', category: 'VA Module 4' },
+        { name: 'VA 4.5 | Reading Comprehension: Practice 2', category: 'VA Module 4' }
       ]),
       DILR: expand([
-        {name:'DI 1.1 | Basics of Data Interpretation',category:'Data Interpretation'},{name:'DI 1.2 | Calculation - Based DI',category:'Data Interpretation'},{name:'DI 2.1 | Deductive Reasoning 1',category:'Data Interpretation'},{name:'DI 2.2 | Deductive Reasoning 2',category:'Data Interpretation'},{name:'DI 2.3 | Venn Diagrams',category:'Data Interpretation'},{name:'DI 3.1 | Observation and Calculation Based Sets',category:'Data Interpretation'},{name:'DI 3.2 | Data Interpretation Misc Sets',category:'Data Interpretation'},{name:'DI 4.1 | Data Interpretation Misc Sets-II',category:'Data Interpretation'},
-        {name:'LR 1.1 | Types of Arrangements',category:'Logical Reasoning'},{name:'LR 1.2 | Conditionalities & Grouping',category:'Logical Reasoning'},{name:'LR 2.2 | Tournaments',category:'Logical Reasoning'},{name:'LR 3.1 | Puzzles',category:'Logical Reasoning'},{name:'LR 3.2 | LR-Misc Sets',category:'Logical Reasoning'},{name:'LR 4.1 | Logical Reasoning Misc Sets',category:'Logical Reasoning'},{name:'LR 4.2 | Cubes – Cutting and Painting',category:'Logical Reasoning'}
+        { name: 'DI 1.1 | Basics of Data Interpretation', category: 'Data Interpretation' },
+        { name: 'DI 1.2 | Calculation - Based DI', category: 'Data Interpretation' },
+        { name: 'DI 2.1 | Deductive Reasoning 1', category: 'Data Interpretation' },
+        { name: 'DI 2.2 | Deductive Reasoning 2', category: 'Data Interpretation' },
+        { name: 'DI 2.3 | Venn Diagrams', category: 'Data Interpretation' },
+        { name: 'DI 3.1 | Observation and Calculation Based Sets', category: 'Data Interpretation' },
+        { name: 'DI 3.2 | Data Interpretation Misc Sets', category: 'Data Interpretation' },
+        { name: 'DI 4.1 | Data Interpretation Misc Sets-II', category: 'Data Interpretation' },
+        { name: 'LR 1.1 | Types of Arrangements', category: 'Logical Reasoning' },
+        { name: 'LR 1.2 | Conditionalities & Grouping', category: 'Logical Reasoning' },
+        { name: 'LR 2.2 | Tournaments', category: 'Logical Reasoning' },
+        { name: 'LR 3.1 | Puzzles', category: 'Logical Reasoning' },
+        { name: 'LR 3.2 | LR-Misc Sets', category: 'Logical Reasoning' },
+        { name: 'LR 4.1 | Logical Reasoning Misc Sets', category: 'Logical Reasoning' },
+        { name: 'LR 4.2 | Cubes – Cutting and Painting', category: 'Logical Reasoning' }
       ]),
       Quant: expand([
-        {name:'QA 1.1 | Properties of Numbers',category:'QA Module 1'},{name:'QA 1.2 | Divisibility and Factors',category:'QA Module 1'},{name:'QA 1.3 | HCF and LCM',category:'QA Module 1'},{name:'QA 1.4 | Linear and Quadratic Equations',category:'QA Module 1'},{name:'QA 1.5 | Percentages',category:'QA Module 1'},{name:'QA 1.6 | Ratio, Proportion and Variation',category:'QA Module 1'},{name:'QA 1.7 | Profit & Loss',category:'QA Module 1'},{name:'QA 1.8 | Simple Interest and Compound Interest',category:'QA Module 1'},{name:'QA 1.9 | Means and Weighted Averages',category:'QA Module 1'},
-        {name:'QA 2.1 | Work, Pipes and Cistern',category:'QA Module 2'},{name:'QA 2.2 | Time, Speed and Distance',category:'QA Module 2'},{name:'QA 2.3 | TSD Applications – I',category:'QA Module 2'},{name:'QA 2.4 | TSD Applications – II',category:'QA Module 2'},{name:'QA 2.5 | Advanced Linear and Quadratic Equations',category:'QA Module 2'},{name:'QA 2.6 | Polynomials',category:'QA Module 2'},{name:'QA 2.7 | Indices and Surds',category:'QA Module 2'},{name:'QA 2.8 | Logarithms',category:'QA Module 2'},{name:'QA 2.9 | Set Theory',category:'QA Module 2'},{name:'QA 2.10 | Sequences & Series',category:'QA Module 2'},
-        {name:'QA 3.1 | Triangles-I',category:'QA Module 3'},{name:'QA 3.2 | Triangles-II',category:'QA Module 3'},{name:'QA 3.3 | Quadrilaterals & Polygons',category:'QA Module 3'},{name:'QA 3.4 | Circles-I',category:'QA Module 3'},{name:'QA 3.5 | Circles-II',category:'QA Module 3'},{name:'QA 3.6 | 3-Dimensional Figures and Mensuration',category:'QA Module 3'},{name:'QA 3.7 | Trigonometry',category:'QA Module 3'},{name:'QA 3.8 | Misc-Geometry',category:'QA Module 3'},
-        {name:'QA 4.1 | Cartesian Coordinate System, Theory & Equation of a Line',category:'QA Module 4'},{name:'QA 4.2 | Plotting of Algebraic Functions & Maxima and Minima',category:'QA Module 4'},{name:'QA 4.3 | Functions & Graphs',category:'QA Module 4'},{name:'QA 4.4 | Inequalities',category:'QA Module 4'},{name:'QA 4.5 | Basic P&C - I',category:'QA Module 4'},{name:'QA 4.6 | Basic P&C - II',category:'QA Module 4'},{name:'QA 4.7 | Probability',category:'QA Module 4'},{name:'QA 4.8 | Applications of P&C, Probability',category:'QA Module 4'},{name:'QA 4.9 | Factorial & Base System',category:'QA Module 4'},{name:'QA 4.10 | Cyclicity and Remainders',category:'QA Module 4'}
+        { name: 'QA 1.1 | Properties of Numbers', category: 'QA Module 1' },
+        { name: 'QA 1.2 | Divisibility and Factors', category: 'QA Module 1' },
+        { name: 'QA 1.3 | HCF and LCM', category: 'QA Module 1' },
+        { name: 'QA 1.4 | Linear and Quadratic Equations', category: 'QA Module 1' },
+        { name: 'QA 1.5 | Percentages', category: 'QA Module 1' },
+        { name: 'QA 1.6 | Ratio, Proportion and Variation', category: 'QA Module 1' },
+        { name: 'QA 1.7 | Profit & Loss', category: 'QA Module 1' },
+        { name: 'QA 1.8 | Simple Interest and Compound Interest', category: 'QA Module 1' },
+        { name: 'QA 1.9 | Means and Weighted Averages', category: 'QA Module 1' },
+        { name: 'QA 2.1 | Work, Pipes and Cistern', category: 'QA Module 2' },
+        { name: 'QA 2.2 | Time, Speed and Distance', category: 'QA Module 2' },
+        { name: 'QA 2.3 | TSD Applications – I', category: 'QA Module 2' },
+        { name: 'QA 2.4 | TSD Applications – II', category: 'QA Module 2' },
+        { name: 'QA 2.5 | Advanced Linear and Quadratic Equations', category: 'QA Module 2' },
+        { name: 'QA 2.6 | Polynomials', category: 'QA Module 2' },
+        { name: 'QA 2.7 | Indices and Surds', category: 'QA Module 2' },
+        { name: 'QA 2.8 | Logarithms', category: 'QA Module 2' },
+        { name: 'QA 2.9 | Set Theory', category: 'QA Module 2' },
+        { name: 'QA 2.10 | Sequences & Series', category: 'QA Module 2' },
+        { name: 'QA 3.1 | Triangles-I', category: 'QA Module 3' },
+        { name: 'QA 3.2 | Triangles-II', category: 'QA Module 3' },
+        { name: 'QA 3.3 | Quadrilaterals & Polygons', category: 'QA Module 3' },
+        { name: 'QA 3.4 | Circles-I', category: 'QA Module 3' },
+        { name: 'QA 3.5 | Circles-II', category: 'QA Module 3' },
+        { name: 'QA 3.6 | 3-Dimensional Figures and Mensuration', category: 'QA Module 3' },
+        { name: 'QA 3.7 | Trigonometry', category: 'QA Module 3' },
+        { name: 'QA 3.8 | Misc-Geometry', category: 'QA Module 3' },
+        { name: 'QA 4.1 | Cartesian Coordinate System, Theory & Equation of a Line', category: 'QA Module 4' },
+        { name: 'QA 4.2 | Plotting of Algebraic Functions & Maxima and Minima', category: 'QA Module 4' },
+        { name: 'QA 4.3 | Functions & Graphs', category: 'QA Module 4' },
+        { name: 'QA 4.4 | Inequalities', category: 'QA Module 4' },
+        { name: 'QA 4.5 | Basic P&C - I', category: 'QA Module 4' },
+        { name: 'QA 4.6 | Basic P&C - II', category: 'QA Module 4' },
+        { name: 'QA 4.7 | Probability', category: 'QA Module 4' },
+        { name: 'QA 4.8 | Applications of P&C, Probability', category: 'QA Module 4' },
+        { name: 'QA 4.9 | Factorial & Base System', category: 'QA Module 4' },
+        { name: 'QA 4.10 | Cyclicity and Remainders', category: 'QA Module 4' }
       ])
     };
   })(),
@@ -957,9 +917,11 @@ const DEFAULT_STATE = {
 
 function deepMerge(target, source) {
   for (const k in source) {
-    if (source[k] && typeof source[k]==='object' && !Array.isArray(source[k])) {
-      target[k] = deepMerge(target[k]||{}, source[k]);
-    } else { target[k]=source[k]; }
+    if (source[k] && typeof source[k] === 'object' && !Array.isArray(source[k])) {
+      target[k] = deepMerge(target[k] || {}, source[k]);
+    } else {
+      target[k] = source[k];
+    }
   }
   return target;
 }
@@ -970,575 +932,1070 @@ function loadState() {
     if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
     const parsed = JSON.parse(raw);
     const merged = deepMerge(JSON.parse(JSON.stringify(DEFAULT_STATE)), parsed);
+
+    // ── Migration: if any section has topics missing subType, replace with fresh defaults ──
     const fresh = JSON.parse(JSON.stringify(DEFAULT_STATE));
     ['VARC','DILR','Quant'].forEach(sec => {
       const topics = merged.topics[sec];
-      const needsMigration = !topics || topics.length===0 || topics.some(t=>!t.subType);
+      const needsMigration = !topics || topics.length === 0 || topics.some(t => !t.subType);
       if (needsMigration) merged.topics[sec] = fresh.topics[sec];
     });
+
     return merged;
   } catch { return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
 }
 
 let S = loadState();
+
 function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(S)); }
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────
-let currentPage = 'dashboard';
+function navigate(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  renderPage(id);
+}
 
-function navigate(id, event) {
-  currentPage = id;
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-
-  // Desktop nav
-  document.querySelectorAll('.sidebar .nav-item').forEach(b=>b.classList.remove('active'));
-  const desktopBtn = document.querySelector(`.sidebar .nav-item[onclick*="'${id}'"]`);
-  if (desktopBtn) desktopBtn.classList.add('active');
-
-  // Mobile bottom nav
-  document.querySelectorAll('.bottom-nav-item').forEach(b=>b.classList.remove('active'));
-  const mobileBtn = document.querySelector(`.bottom-nav-item[data-page="${id}"]`);
-  if (mobileBtn) mobileBtn.classList.add('active');
-  // Also highlight 'more' button if on a drawer page
-  if (['weak','targets','revision','settings'].includes(id)) {
-    document.getElementById('more-btn').classList.add('active');
-    // Mark drawer item
-    document.querySelectorAll('.more-drawer-item').forEach(b=>{
-      b.classList.toggle('active', b.getAttribute('data-page')===id);
-    });
-  }
-
+function renderPage(id) {
   destroyCharts();
-  if (id==='dashboard') renderDashboard();
-  else if (id==='study') renderStudy();
-  else if (id==='mocks') renderMocks();
-  else if (id==='topics') renderTopics();
-  else if (id==='weak') renderWeak();
-  else if (id==='targets') renderTargets();
-  else if (id==='revision') renderRevision();
-  else if (id==='settings') renderSettings();
-}
-
-// ─── MORE DRAWER ─────────────────────────────────────────────────────
-function toggleMoreDrawer() {
-  const drawer = document.getElementById('more-drawer');
-  const overlay = document.getElementById('more-overlay');
-  const isOpen = drawer.classList.contains('open');
-  drawer.classList.toggle('open', !isOpen);
-  overlay.classList.toggle('open', !isOpen);
-}
-function closeMoreDrawer() {
-  document.getElementById('more-drawer').classList.remove('open');
-  document.getElementById('more-overlay').classList.remove('open');
-}
-
-// ─── CLOUD SYNC ──────────────────────────────────────────────────────
-function openCloudModal() {
-  document.getElementById('cloud-modal').classList.add('open');
-  document.getElementById('sync-code-output').style.display='none';
-  document.getElementById('sync-import-input').value='';
-  document.getElementById('sync-import-preview').style.display='none';
-  document.getElementById('sync-load-btn').style.display='none';
-}
-function closeCloudModal() { document.getElementById('cloud-modal').classList.remove('open'); }
-
-function switchSyncTab(tab, el) {
-  document.querySelectorAll('.sync-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('sync-export-panel').style.display = tab==='export'?'block':'none';
-  document.getElementById('sync-import-panel').style.display = tab==='import'?'block':'none';
-}
-
-async function generateSyncCode() {
-  const json = JSON.stringify(S);
-  const code = await compressData(json);
-  document.getElementById('sync-code-box').textContent = code;
-  document.getElementById('sync-code-output').style.display='block';
-  const kb = (code.length/1024).toFixed(1);
-  const items = S.studyLogs.length + S.mocks.length + S.revisions.length;
-  document.getElementById('sync-code-stats').textContent = `Code size: ~${kb} KB · ${items} log entries`;
-}
-
-function copySyncCode() {
-  const code = document.getElementById('sync-code-box').textContent;
-  navigator.clipboard.writeText(code).then(()=>{
-    const btn = event.target;
-    const orig = btn.textContent;
-    btn.textContent = '✓ Copied!';
-    setTimeout(()=>btn.textContent=orig, 2000);
-  }).catch(()=>{
-    // Fallback
-    const ta = document.createElement('textarea');
-    ta.value = code; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    alert('Code copied to clipboard!');
-  });
-}
-
-async function shareSyncCode() {
-  const code = document.getElementById('sync-code-box').textContent;
-  if (navigator.share) {
-    try { await navigator.share({ title: 'CAT Tracker Sync Code', text: code }); return; } catch(e){}
-  }
-  copySyncCode();
-}
-
-async function previewSyncCode() {
-  const code = document.getElementById('sync-import-input').value.trim();
-  if (!code) { alert('Please paste a sync code first.'); return; }
-  const json = await decompressData(code);
-  if (!json) { alert('Invalid or corrupted sync code.'); return; }
-  try {
-    const data = JSON.parse(json);
-    const items = (data.studyLogs||[]).length + (data.mocks||[]).length + (data.revisions||[]).length;
-    const name = data.config?.name || 'Unknown';
-    document.getElementById('sync-import-preview').style.display='block';
-    document.getElementById('sync-import-preview').innerHTML =
-      `✓ Valid code · <strong>${name || 'Your data'}</strong> · ${(data.mocks||[]).length} mocks · ${(data.studyLogs||[]).length} study sessions · ${(data.revisions||[]).length} revision tasks`;
-    document.getElementById('sync-load-btn').style.display='inline-flex';
-  } catch(e) {
-    alert('Could not parse sync code. Make sure you copied the full code.');
-  }
-}
-
-async function loadSyncCode() {
-  if (!confirm('This will REPLACE all current data with the imported data. Continue?')) return;
-  const code = document.getElementById('sync-import-input').value.trim();
-  const json = await decompressData(code);
-  if (!json) { alert('Failed to decode sync code.'); return; }
-  try {
-    S = JSON.parse(json);
-    save();
-    closeCloudModal();
-    location.reload();
-  } catch(e) {
-    alert('Failed to load data from sync code.');
-  }
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'study') renderStudy();
+  if (id === 'mocks') renderMocks();
+  if (id === 'topics') renderTopics();
+  if (id === 'weak') renderWeak();
+  if (id === 'targets') renderTargets();
+  if (id === 'revision') renderRevision();
+  if (id === 'settings') renderSettings();
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────────────
-const SEC_C = { VARC:'#e8c97a', DILR:'#7ab8e8', Quant:'#7ae8b0' };
-function totalHours() { return S.studyLogs.reduce((a,l)=>a+l.hours,0); }
-function sectionHours(s) { return S.studyLogs.filter(l=>l.section===s).reduce((a,l)=>a+l.hours,0); }
-function allTopics() { let arr=[]; ['VARC','DILR','Quant'].forEach(s=>S.topics[s].forEach(t=>arr.push({...t,section:s}))); return arr; }
-function topicAcc(t) { return t.attempts>0?Math.round(t.correct/t.attempts*100):0; }
-function sectionAcc(s) { const t=S.topics[s]; const cor=t.reduce((a,x)=>a+x.correct,0); const att=t.reduce((a,x)=>a+x.attempts,0); return att>0?Math.round(cor/att*100):0; }
-function latestMock() { return S.mocks.length?S.mocks[S.mocks.length-1]:null; }
-function daysLeft() { const exam=new Date(S.config.examDate); const now=new Date(); const diff=Math.ceil((exam-now)/86400000); return diff>0?diff:0; }
-function fmt(n) { return Number.isInteger(n)?n:parseFloat(n.toFixed(1)); }
+const SEC_C = { VARC: '#e8c97a', DILR: '#7ab8e8', Quant: '#7ae8b0' };
+
+function totalHours() { return S.studyLogs.reduce((a, l) => a + l.hours, 0); }
+function sectionHours(s) { return S.studyLogs.filter(l => l.section === s).reduce((a, l) => a + l.hours, 0); }
+function allTopics() {
+  let arr = [];
+  ['VARC','DILR','Quant'].forEach(s => S.topics[s].forEach(t => arr.push({ ...t, section: s })));
+  return arr;
+}
+function topicAcc(t) { return t.attempts > 0 ? Math.round(t.correct / t.attempts * 100) : 0; }
+function sectionAcc(s) {
+  const t = S.topics[s];
+  const cor = t.reduce((a,x) => a+x.correct, 0);
+  const att = t.reduce((a,x) => a+x.attempts, 0);
+  return att > 0 ? Math.round(cor/att*100) : 0;
+}
+function latestMock() { return S.mocks.length ? S.mocks[S.mocks.length-1] : null; }
+function daysLeft() {
+  const exam = new Date(S.config.examDate);
+  const now = new Date();
+  const diff = Math.ceil((exam - now) / 86400000);
+  return diff > 0 ? diff : 0;
+}
+function fmt(n) { return Number.isInteger(n) ? n : parseFloat(n.toFixed(1)); }
 
 let charts = {};
-function destroyCharts() { Object.values(charts).forEach(c=>{try{c.destroy();}catch{}}); charts={}; }
+function destroyCharts() {
+  Object.values(charts).forEach(c => { try { c.destroy(); } catch {} });
+  charts = {};
+}
 
 const CHART_DEFAULTS = {
-  responsive:true, maintainAspectRatio:false,
-  plugins:{legend:{display:false}},
-  scales:{
-    y:{ticks:{color:'#6b6860',font:{size:10,family:"'DM Mono'"}},grid:{color:'rgba(255,255,255,0.04)'},border:{display:false}},
-    x:{ticks:{color:'#6b6860',font:{size:10,family:"'DM Mono'"},maxRotation:0},grid:{display:false},border:{display:false}}
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { display: false } },
+  scales: {
+    y: { ticks: { color: '#6b6860', font: { size: 11, family: "'DM Mono'" } }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } },
+    x: { ticks: { color: '#6b6860', font: { size: 11, family: "'DM Mono'" } }, grid: { display: false }, border: { display: false } }
   }
 };
 
 function mkChart(id, config) {
-  const el=document.getElementById(id);
-  if(!el||!el.isConnected) return;
-  if(charts[id]){try{charts[id].destroy();}catch{}}
-  charts[id]=new Chart(el,config);
+  const el = document.getElementById(id);
+  if (!el || !el.isConnected) return;
+  if (charts[id]) { try { charts[id].destroy(); } catch {} }
+  charts[id] = new Chart(el, config);
 }
 
 // ─── DASHBOARD ───────────────────────────────────────────────────────
 function renderDashboard() {
-  const now=new Date();
-  document.getElementById('dash-date-str').textContent=now.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  const lm=latestMock();
-  const metrics=[
-    {label:'Total hours',val:fmt(totalHours()),sub:'studied'},
-    {label:'Mocks taken',val:S.mocks.length,sub:'tests'},
-    {label:'Overall accuracy',val:(()=>{const at=allTopics();const c=at.reduce((a,x)=>a+x.correct,0);const t=at.reduce((a,x)=>a+x.attempts,0);return t>0?Math.round(c/t*100)+'%':'—';})(),sub:'all topics'},
-    {label:'Latest score',val:lm?lm.varc+lm.dilr+lm.qa:'—',sub:lm?lm.name:'no mocks yet'},
-    {label:'Days to exam',val:daysLeft(),sub:S.config.examDate},
-    {label:'Target %ile',val:S.targets.percentile,sub:'goal'}
+  const now = new Date();
+  document.getElementById('dash-date-str').textContent =
+    now.toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  const lm = latestMock();
+  const metrics = [
+    { label: 'Total hours', val: fmt(totalHours()), sub: 'studied' },
+    { label: 'Mocks taken', val: S.mocks.length, sub: 'tests' },
+    { label: 'Overall accuracy', val: (() => { const at=allTopics(); const c=at.reduce((a,x)=>a+x.correct,0); const t=at.reduce((a,x)=>a+x.attempts,0); return t>0?Math.round(c/t*100)+'%':'—'; })(), sub: 'all topics' },
+    { label: 'Latest score', val: lm ? lm.varc+lm.dilr+lm.qa : '—', sub: lm ? lm.name : 'no mocks yet' },
+    { label: 'Days to exam', val: daysLeft(), sub: S.config.examDate },
+    { label: 'Target %ile', val: S.targets.percentile, sub: 'goal' }
   ];
-  document.getElementById('dash-metrics').innerHTML=metrics.map(m=>`<div class="metric-card"><div class="metric-label">${m.label}</div><div class="metric-val">${m.val}</div><div class="metric-sub">${m.sub}</div></div>`).join('');
-  const weeks=[],hrs=[];
-  for(let i=7;i>=0;i--){
-    const d=new Date();d.setDate(d.getDate()-i*7);
-    const wStart=new Date(d);wStart.setDate(d.getDate()-6);
-    const wEnd=new Date(d);
-    const wHrs=S.studyLogs.filter(l=>{const ld=new Date(l.date);return ld>=wStart&&ld<=wEnd;}).reduce((a,l)=>a+l.hours,0);
-    weeks.push('W'+(8-i));hrs.push(parseFloat(wHrs.toFixed(1)));
+  document.getElementById('dash-metrics').innerHTML = metrics.map(m =>
+    `<div class="metric-card"><div class="metric-label">${m.label}</div><div class="metric-val">${m.val}</div><div class="metric-sub">${m.sub}</div></div>`
+  ).join('');
+
+  // Hours chart — last 8 weeks
+  const weeks = []; const hrs = [];
+  for (let i=7; i>=0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i*7);
+    const wStart = new Date(d); wStart.setDate(d.getDate()-6);
+    const wEnd = new Date(d);
+    const wHrs = S.studyLogs.filter(l => {
+      const ld = new Date(l.date);
+      return ld >= wStart && ld <= wEnd;
+    }).reduce((a,l) => a+l.hours, 0);
+    weeks.push('W'+(8-i));
+    hrs.push(parseFloat(wHrs.toFixed(1)));
   }
-  mkChart('hoursChart',{type:'bar',data:{labels:weeks,datasets:[{data:hrs,backgroundColor:'rgba(232,201,122,0.7)',borderRadius:4}]},options:{...CHART_DEFAULTS,scales:{...CHART_DEFAULTS.scales,y:{...CHART_DEFAULTS.scales.y,beginAtZero:true}}}});
-  if(S.mocks.length){
-    mkChart('scoreChart',{type:'line',data:{labels:S.mocks.map(m=>m.name),datasets:[{data:S.mocks.map(m=>m.varc+m.dilr+m.qa),borderColor:'#7ae8b0',backgroundColor:'rgba(122,232,176,0.05)',tension:0.4,pointRadius:4,fill:true}]},options:{...CHART_DEFAULTS}});
+  mkChart('hoursChart', {
+    type: 'bar',
+    data: { labels: weeks, datasets: [{ data: hrs, backgroundColor: 'rgba(232,201,122,0.7)', borderRadius: 4 }] },
+    options: { ...CHART_DEFAULTS, scales: { ...CHART_DEFAULTS.scales, y: { ...CHART_DEFAULTS.scales.y, beginAtZero: true } } }
+  });
+
+  // Score chart
+  if (S.mocks.length) {
+    mkChart('scoreChart', {
+      type: 'line',
+      data: {
+        labels: S.mocks.map(m => m.name),
+        datasets: [{ data: S.mocks.map(m => m.varc+m.dilr+m.qa), borderColor: '#7ae8b0', backgroundColor: 'rgba(122,232,176,0.05)', tension: 0.4, pointRadius: 4, fill: true }]
+      },
+      options: { ...CHART_DEFAULTS }
+    });
   } else {
-    const wrap=document.getElementById('scoreChart').closest('.chart-wrap');
-    if(wrap) wrap.innerHTML='<div class="empty-state">Add mocks to see trend</div>';
+    document.getElementById('scoreChart').closest('.chart-wrap').innerHTML = '<div class="empty-state">Add mocks to see trend</div>';
   }
-  document.getElementById('dash-acc').innerHTML=['VARC','DILR','Quant'].map(s=>{const pct=sectionAcc(s);return`<div class="prog-row"><span class="prog-label">${s}</span><div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div><span class="prog-pct">${pct}%</span></div>`;}).join('');
-  const lMock=latestMock();
-  document.getElementById('dash-targets').innerHTML=['VARC','DILR','Quant'].map((s)=>{
-    const target=s==='VARC'?S.targets.varc:s==='DILR'?S.targets.dilr:S.targets.qa;
-    const current=lMock?(s==='VARC'?lMock.varc:s==='DILR'?lMock.dilr:lMock.qa):0;
-    const pct=target>0?Math.min(100,Math.round(current/target*100)):0;
-    const diff=current-target;
-    const diffStr=lMock?(diff>=0?`+${diff} ahead`:`${diff} to go`):'no data';
-    return`<div class="prog-row"><span class="prog-label">${s} (${current}/${target})</span><div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div><span class="prog-pct" style="color:${diff>=0?'var(--success)':'var(--text3)'}">${diffStr}</span></div>`;
+
+  // Accuracy bars
+  document.getElementById('dash-acc').innerHTML = ['VARC','DILR','Quant'].map(s => {
+    const pct = sectionAcc(s);
+    return `<div class="prog-row">
+      <span class="prog-label">${s}</span>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div>
+      <span class="prog-pct">${pct}%</span>
+    </div>`;
   }).join('');
+
+  // Target progress
+  const lMock = latestMock();
+  const tpHTML = ['VARC','DILR','Quant'].map((s,i) => {
+    const key = s.toLowerCase().replace('quant','qa');
+    const target = s==='VARC'?S.targets.varc:s==='DILR'?S.targets.dilr:S.targets.qa;
+    const current = lMock ? (s==='VARC'?lMock.varc:s==='DILR'?lMock.dilr:lMock.qa) : 0;
+    const pct = target > 0 ? Math.min(100, Math.round(current/target*100)) : 0;
+    const diff = current - target;
+    const diffStr = lMock ? (diff >= 0 ? `+${diff} ahead` : `${diff} to go`) : 'no data';
+    return `<div class="prog-row">
+      <span class="prog-label">${s} (${current}/${target})</span>
+      <div class="prog-track"><div class="prog-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div>
+      <span class="prog-pct" style="color:${diff>=0?'var(--success)':'var(--text3)'}">${diffStr}</span>
+    </div>`;
+  }).join('');
+  document.getElementById('dash-targets').innerHTML = tpHTML;
 }
 
 // ─── STUDY LOG ───────────────────────────────────────────────────────
 function renderStudy() {
-  document.getElementById('s-date').value=new Date().toISOString().slice(0,10);
-  const heatmapEl=document.getElementById('heatmap');
-  const DAY_LABELS=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const ymd=dt=>{const y=dt.getFullYear();const m=String(dt.getMonth()+1).padStart(2,'0');const d=String(dt.getDate()).padStart(2,'0');return`${y}-${m}-${d}`;};
-  const today=new Date();today.setHours(0,0,0,0);
-  let examEnd=new Date((S.config.examDate||'2026-11-29')+'T00:00:00');
+  document.getElementById('s-date').value = new Date().toISOString().slice(0,10);
+
+  // Heatmap — TODAY → exam date (starts this week, no past months)
+  const heatmapEl = document.getElementById('heatmap');
+  const DAY_LABELS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+  // Local date formatter (avoids UTC shift from toISOString)
+  const ymd = dt => {
+    const y = dt.getFullYear();
+    const m = String(dt.getMonth() + 1).padStart(2, '0');
+    const d = String(dt.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  };
+
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Exam date: use config, fallback to Nov 29 2026 if past or unset
+  let examEnd = new Date((S.config.examDate || '2026-11-29') + 'T00:00:00');
   examEnd.setHours(0,0,0,0);
-  if(examEnd<=today)examEnd=new Date('2026-11-29T00:00:00');
-  const dayMap={};
-  S.studyLogs.forEach(l=>{dayMap[l.date]=(dayMap[l.date]||0)+l.hours;});
-  const startDay=new Date(today);
-  const dow0=startDay.getDay();
-  startDay.setDate(startDay.getDate()-(dow0===0?6:dow0-1));
-  const endDay=new Date(examEnd);
-  const endDow=endDay.getDay();
-  endDay.setDate(endDay.getDate()+(endDow===0?0:7-endDow));
-  const weeks=[],cur=new Date(startDay);
-  let guard=0;
-  while(cur<=endDay&&guard<200){
+  if (examEnd <= today) examEnd = new Date('2026-11-29T00:00:00');
+  examEnd.setHours(0,0,0,0);
+
+  // Build day map
+  const dayMap = {};
+  S.studyLogs.forEach(l => { dayMap[l.date] = (dayMap[l.date] || 0) + l.hours; });
+
+  // Start: Monday of current week
+  const startDay = new Date(today);
+  const dow0 = startDay.getDay();
+  startDay.setDate(startDay.getDate() - (dow0 === 0 ? 6 : dow0 - 1));
+
+  // End: Sunday on or after exam date
+  const endDay = new Date(examEnd);
+  const endDow = endDay.getDay();
+  endDay.setDate(endDay.getDate() + (endDow === 0 ? 0 : 7 - endDow));
+
+  // Build weeks
+  const weeks = [];
+  const cur = new Date(startDay);
+  let guard = 0;
+  while (cur <= endDay && guard < 200) {
     guard++;
-    const week=[];
-    for(let d=0;d<7;d++){
-      const day=new Date(cur);day.setDate(cur.getDate()+d);
-      const ds=ymd(day);
-      const hrs=dayMap[ds]||0;
-      const isToday=day.getTime()===today.getTime();
-      const isFuture=day>today;
-      const isExam=ds===ymd(examEnd);
-      const lvl=isFuture&&!isToday?0:hrs===0?0:hrs<1?1:hrs<3?2:hrs<5?3:4;
-      week.push({ds,hrs,lvl,isToday,isFuture,isExam,day});
+    const week = [];
+    for (let d = 0; d < 7; d++) {
+      const day = new Date(cur); day.setDate(cur.getDate() + d);
+      const ds = ymd(day);
+      const hrs = dayMap[ds] || 0;
+      const isToday = day.getTime() === today.getTime();
+      const isFuture = day > today;
+      const isExam = ds === ymd(examEnd);
+      const lvl = isFuture && !isToday ? 0 : hrs===0?0:hrs<1?1:hrs<3?2:hrs<5?3:4;
+      week.push({ ds, hrs, lvl, isToday, isFuture, isExam, day });
     }
-    weeks.push(week);cur.setDate(cur.getDate()+7);
+    weeks.push(week);
+    cur.setDate(cur.getDate() + 7);
   }
-  let lastMonth=-1;
-  const monthLabels=weeks.map(week=>{const m=week[0].day.getMonth();if(m!==lastMonth){lastMonth=m;return week[0].day.toLocaleString('default',{month:'short'});}return'';});
-  const COLORS=['var(--bg4)','rgba(122,232,176,0.2)','rgba(122,232,176,0.42)','rgba(122,232,176,0.65)','#7ae8b0'];
-  const niceDate=dt=>dt.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
-  heatmapEl.style.overflowX='auto';heatmapEl.style.WebkitOverflowScrolling='touch';
-  heatmapEl.innerHTML=`<div style="display:inline-block;min-width:max-content">
-    <div style="display:flex;gap:3px;margin-bottom:4px;padding-left:36px">${monthLabels.map(lbl=>`<div style="width:13px;font-size:10px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap;overflow:visible">${lbl}</div>`).join('')}</div>
-    ${Array.from({length:7},(_,d)=>{
-      const cells=weeks.map(week=>{
-        const cell=week[d];
-        const tip=cell.isExam?niceDate(cell.day)+' · 🎯 CAT Exam Day':niceDate(cell.day)+' · '+(cell.hrs>0?fmt(cell.hrs)+' hr'+(cell.hrs===1?'':'s')+' studied':(cell.isFuture?'upcoming':'no study logged'));
-        const base='width:13px;height:13px;border-radius:2px;flex-shrink:0;cursor:pointer;display:block';
-        let style;
-        if(cell.isExam)style=base+';background:#e87a7a;box-shadow:0 0 5px #e87a7a99';
-        else if(cell.isToday)style=base+';background:'+(cell.hrs>0?COLORS[cell.lvl]:'rgba(232,201,122,0.25)')+';outline:2px solid var(--accent);outline-offset:1px';
-        else if(cell.isFuture)style=base+';background:var(--bg3);border:1px solid rgba(255,255,255,0.05)';
-        else style=base+';background:'+COLORS[cell.lvl];
-        return'<div class="hm-cell" data-tip="'+tip.replace(/"/g,'&quot;')+'" style="'+style+'"></div>';
-      }).join('');
-      const label=[0,2,4].includes(d)?DAY_LABELS[d]:'';
-      return'<div style="display:flex;gap:3px;margin-bottom:3px;align-items:center"><div style="width:32px;font-size:10px;color:var(--text3);font-family:var(--font-mono);flex-shrink:0;text-align:right;padding-right:4px">'+label+'</div>'+cells+'</div>';
-    }).join('')}
-    <div style="display:flex;gap:10px;margin-top:10px;padding-left:36px;align-items:center;font-size:11px;color:var(--text3);font-family:var(--font-mono);flex-wrap:wrap"><span>Less</span>${COLORS.map(c=>'<span style="width:11px;height:11px;border-radius:2px;background:'+c+';display:inline-block;border:1px solid rgba(255,255,255,0.08)"></span>').join('')}<span>More</span></div>
-  </div>
-  <div id="hm-tooltip" style="position:fixed;pointer-events:none;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:6px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text);white-space:nowrap;z-index:1000;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.5)"></div>`;
-  const tooltip=document.getElementById('hm-tooltip');
-  heatmapEl.querySelectorAll('.hm-cell').forEach(cellEl=>{
-    cellEl.addEventListener('mouseenter',e=>{tooltip.textContent=e.target.getAttribute('data-tip');tooltip.style.display='block';});
-    cellEl.addEventListener('mousemove',e=>{tooltip.style.left=(e.clientX+12)+'px';tooltip.style.top=(e.clientY-10)+'px';});
-    cellEl.addEventListener('mouseleave',()=>{tooltip.style.display='none';});
+
+  // Month labels
+  let lastMonth = -1;
+  const monthLabels = weeks.map(week => {
+    const m = week[0].day.getMonth();
+    if (m !== lastMonth) { lastMonth = m; return week[0].day.toLocaleString('default',{month:'short'}); }
+    return '';
   });
-  const logs=[...S.studyLogs].reverse().slice(0,20);
-  document.getElementById('study-log-list').innerHTML=logs.length?logs.map((l,i)=>`
+
+  const COLORS = ['var(--bg4)','rgba(122,232,176,0.2)','rgba(122,232,176,0.42)','rgba(122,232,176,0.65)','#7ae8b0'];
+
+  // Human-readable date for tooltips
+  const niceDate = dt => dt.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+
+  heatmapEl.style.display = 'block';
+  heatmapEl.style.overflowX = 'auto';
+  heatmapEl.style.position = 'relative';
+  heatmapEl.innerHTML = `
+    <div style="display:inline-block;min-width:max-content">
+      <div style="display:flex;gap:3px;margin-bottom:4px;padding-left:36px">
+        ${monthLabels.map(lbl => `<div style="width:13px;font-size:10px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap;overflow:visible">${lbl}</div>`).join('')}
+      </div>
+      ${Array.from({length:7}, (_, d) => {
+        const cells = weeks.map(week => {
+          const cell = week[d];
+          const tip = cell.isExam
+            ? niceDate(cell.day) + ' · 🎯 CAT Exam Day'
+            : niceDate(cell.day) + ' · ' + (cell.hrs > 0 ? fmt(cell.hrs) + ' hr' + (cell.hrs===1?'':'s') + ' studied' : (cell.isFuture ? 'upcoming' : 'no study logged'));
+          const base = 'width:13px;height:13px;border-radius:2px;flex-shrink:0;cursor:pointer';
+          let style;
+          if (cell.isExam) style = base + ';background:#e87a7a;box-shadow:0 0 5px #e87a7a99';
+          else if (cell.isToday) style = base + ';background:' + (cell.hrs>0?COLORS[cell.lvl]:'rgba(232,201,122,0.25)') + ';outline:2px solid var(--accent);outline-offset:1px';
+          else if (cell.isFuture) style = base + ';background:var(--bg3);border:1px solid rgba(255,255,255,0.05)';
+          else style = base + ';background:' + COLORS[cell.lvl];
+          return '<div class="hm-cell" data-tip="' + tip.replace(/"/g,'&quot;') + '" style="' + style + '"></div>';
+        }).join('');
+        const label = [0,2,4].includes(d) ? DAY_LABELS[d] : '';
+        return '<div style="display:flex;gap:3px;margin-bottom:3px;align-items:center"><div style="width:32px;font-size:10px;color:var(--text3);font-family:var(--font-mono);flex-shrink:0;text-align:right;padding-right:4px">' + label + '</div>' + cells + '</div>';
+      }).join('')}
+      <div style="display:flex;gap:12px;margin-top:10px;padding-left:36px;align-items:center;font-size:11px;color:var(--text3);font-family:var(--font-mono);flex-wrap:wrap">
+        <span>Less</span>
+        ${COLORS.map(c => '<span style="width:11px;height:11px;border-radius:2px;background:'+c+';display:inline-block;border:1px solid rgba(255,255,255,0.08)"></span>').join('')}
+        <span>More</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:11px;height:11px;border-radius:2px;background:#e87a7a;display:inline-block"></span>Exam</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:11px;height:11px;border-radius:2px;background:var(--bg3);border:1px solid rgba(255,255,255,0.06);display:inline-block"></span>Upcoming</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:11px;height:11px;border-radius:2px;outline:2px solid var(--accent);display:inline-block"></span>Today</span>
+      </div>
+    </div>
+    <div id="hm-tooltip" style="position:fixed;pointer-events:none;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:6px 10px;font-size:12px;font-family:var(--font-mono);color:var(--text);white-space:nowrap;z-index:1000;display:none;box-shadow:0 4px 16px rgba(0,0,0,0.5)"></div>
+  `;
+
+  // Wire custom tooltip
+  const tooltip = document.getElementById('hm-tooltip');
+  heatmapEl.querySelectorAll('.hm-cell').forEach(cellEl => {
+    cellEl.addEventListener('mouseenter', e => {
+      tooltip.textContent = e.target.getAttribute('data-tip');
+      tooltip.style.display = 'block';
+    });
+    cellEl.addEventListener('mousemove', e => {
+      tooltip.style.left = (e.clientX + 12) + 'px';
+      tooltip.style.top = (e.clientY - 10) + 'px';
+    });
+    cellEl.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+
+  // Recent sessions
+  const logs = [...S.studyLogs].reverse().slice(0,20);
+  document.getElementById('study-log-list').innerHTML = logs.length ? logs.map((l,i) => `
     <div class="data-row">
       <span class="dot" style="background:${SEC_C[l.section]};flex-shrink:0"></span>
-      <span style="flex:1;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${l.note||l.section}</span>
+      <span style="flex:1;font-size:13px">${l.note || l.section}</span>
       <span class="badge badge-${l.section.toLowerCase()}">${l.section}</span>
-      <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3);white-space:nowrap">${l.date}</span>
-      <span style="font-weight:600;font-size:13px;white-space:nowrap">${l.hours}h</span>
-      <button class="btn btn-ghost btn-sm btn-icon" onclick="deleteLog(${S.studyLogs.length-1-i})">✕</button>
-    </div>`).join(''):'<div class="empty-state">No sessions logged yet</div>';
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--text3)">${l.date}</span>
+      <span style="font-weight:600;font-size:13px">${l.hours}h</span>
+      <button class="btn btn-ghost btn-sm" onclick="deleteLog(${S.studyLogs.length-1-i})" style="padding:3px 8px;font-size:11px">✕</button>
+    </div>`).join('') : '<div class="empty-state">No sessions logged yet</div>';
 }
 
 function logStudy() {
-  const d=document.getElementById('s-date').value;
-  const s=document.getElementById('s-sec').value;
-  const h=parseFloat(document.getElementById('s-hrs').value);
-  const n=document.getElementById('s-note').value.trim();
-  if(!d||!h||h<=0)return;
-  S.studyLogs.push({date:d,section:s,hours:h,note:n});
-  save();renderStudy();
-  document.getElementById('s-note').value='';
+  const d = document.getElementById('s-date').value;
+  const s = document.getElementById('s-sec').value;
+  const h = parseFloat(document.getElementById('s-hrs').value);
+  const n = document.getElementById('s-note').value.trim();
+  if (!d || !h || h <= 0) return;
+  S.studyLogs.push({ date: d, section: s, hours: h, note: n });
+  save(); renderStudy();
+  document.getElementById('s-note').value = '';
 }
-function deleteLog(i){S.studyLogs.splice(i,1);save();renderStudy();}
+
+function deleteLog(i) {
+  S.studyLogs.splice(i, 1);
+  save(); renderStudy();
+}
 
 // ─── MOCK TESTS ──────────────────────────────────────────────────────
-function updateTotalPreview(){
-  const v=parseInt(document.getElementById('m-varc').value)||0;
-  const d=parseInt(document.getElementById('m-dilr').value)||0;
-  const q=parseInt(document.getElementById('m-qa').value)||0;
-  const el=document.getElementById('m-total-preview');
-  if(el)el.textContent=v+d+q;
+function updateTotalPreview() {
+  const v = parseInt(document.getElementById('m-varc').value) || 0;
+  const d = parseInt(document.getElementById('m-dilr').value) || 0;
+  const q = parseInt(document.getElementById('m-qa').value) || 0;
+  const el = document.getElementById('m-total-preview');
+  if (el) el.textContent = v + d + q;
 }
-function renderMocks(){
-  document.getElementById('m-date').value=new Date().toISOString().slice(0,10);
+
+function renderMocks() {
+  document.getElementById('m-date').value = new Date().toISOString().slice(0,10);
   updateTotalPreview();
-  if(!S.mocks.length){document.getElementById('mock-list').innerHTML='<div class="empty-state">No mocks yet</div>';return;}
-  const labels=S.mocks.map(m=>m.name);
-  mkChart('totalChart',{type:'line',data:{labels,datasets:[{data:S.mocks.map(m=>m.varc+m.dilr+m.qa),borderColor:'#e8c97a',backgroundColor:'rgba(232,201,122,0.1)',tension:0.4,pointRadius:5,pointBackgroundColor:'#e8c97a',fill:true}]},options:{...CHART_DEFAULTS,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'Total: '+c.parsed.y+' / 198'}}},scales:{...CHART_DEFAULTS.scales,y:{...CHART_DEFAULTS.scales.y,beginAtZero:false,suggestedMax:198}}}});
-  mkChart('mockTrendChart',{type:'line',data:{labels,datasets:[{label:'VARC',data:S.mocks.map(m=>m.varc),borderColor:'#e8c97a',tension:0.4,pointRadius:4},{label:'DILR',data:S.mocks.map(m=>m.dilr),borderColor:'#7ab8e8',tension:0.4,pointRadius:4,borderDash:[4,3]},{label:'QA',data:S.mocks.map(m=>m.qa),borderColor:'#7ae8b0',tension:0.4,pointRadius:4,borderDash:[2,2]}]},options:{...CHART_DEFAULTS}});
-  const withPct=S.mocks.filter(m=>m.percentile);
-  if(withPct.length){
-    mkChart('pctChart',{type:'line',data:{labels:withPct.map(m=>m.name),datasets:[{data:withPct.map(m=>m.percentile),borderColor:'#e87a7a',backgroundColor:'rgba(232,122,122,0.07)',tension:0.4,pointRadius:4,fill:true}]},options:{...CHART_DEFAULTS,scales:{...CHART_DEFAULTS.scales,y:{...CHART_DEFAULTS.scales.y,min:0,max:100}}}});
-  } else {
-    const wrap=document.getElementById('pct-chart-wrap');
-    if(wrap)wrap.innerHTML='<div class="empty-state">Add percentile data to see trend</div>';
+
+  if (!S.mocks.length) {
+    document.getElementById('mock-list').innerHTML = '<div class="empty-state">No mocks yet</div>';
+    return;
   }
-  const headerRow=`<div class="data-row" style="gap:8px;border-bottom:1px solid var(--border2);min-width:500px">
+  const labels = S.mocks.map(m => m.name);
+  const totals = S.mocks.map(m => m.varc + m.dilr + m.qa);
+
+  // Total score trend chart
+  mkChart('totalChart', {
+    type: 'line',
+    data: { labels, datasets: [{
+      data: totals,
+      borderColor: '#e8c97a',
+      backgroundColor: 'rgba(232,201,122,0.1)',
+      tension: 0.4, pointRadius: 5, pointBackgroundColor: '#e8c97a', fill: true
+    }]},
+    options: {
+      ...CHART_DEFAULTS,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => 'Total: ' + c.parsed.y + ' / 198' } }
+      },
+      scales: { ...CHART_DEFAULTS.scales, y: { ...CHART_DEFAULTS.scales.y, beginAtZero: false, suggestedMax: 198 } }
+    }
+  });
+
+  mkChart('mockTrendChart', {
+    type: 'line',
+    data: { labels, datasets: [
+      { label:'VARC', data:S.mocks.map(m=>m.varc), borderColor:'#e8c97a', tension:0.4, pointRadius:4, borderDash:[] },
+      { label:'DILR', data:S.mocks.map(m=>m.dilr), borderColor:'#7ab8e8', tension:0.4, pointRadius:4, borderDash:[4,3] },
+      { label:'QA',   data:S.mocks.map(m=>m.qa),   borderColor:'#7ae8b0', tension:0.4, pointRadius:4, borderDash:[2,2] }
+    ]},
+    options: { ...CHART_DEFAULTS }
+  });
+  const withPct = S.mocks.filter(m => m.percentile);
+  if (withPct.length) {
+    mkChart('pctChart', {
+      type: 'line',
+      data: { labels: withPct.map(m=>m.name), datasets:[{ data:withPct.map(m=>m.percentile), borderColor:'#e87a7a', backgroundColor:'rgba(232,122,122,0.07)', tension:0.4, pointRadius:4, fill:true }]},
+      options: { ...CHART_DEFAULTS, scales: { ...CHART_DEFAULTS.scales, y: { ...CHART_DEFAULTS.scales.y, min:0, max:100 } } }
+    });
+  } else {
+    const wrap = document.getElementById('pct-chart-wrap');
+    if (wrap) wrap.innerHTML = '<div class="empty-state">Add percentile data to see trend</div>';
+  }
+
+  // Header row + data rows
+  const headerRow = `<div class="data-row" style="gap:12px;border-bottom:1px solid var(--border2)">
     <span style="flex:2;font-size:10px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.5px">Mock</span>
-    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:36px;text-align:center">VARC</span>
-    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:36px;text-align:center">DILR</span>
-    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:36px;text-align:center">QA</span>
+    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:32px;text-align:center">VARC</span>
+    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:32px;text-align:center">DILR</span>
+    <span style="color:var(--text3);font-family:var(--font-mono);font-size:10px;width:32px;text-align:center">QA</span>
     <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);width:50px;text-align:center">TOTAL</span>
-    <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);width:46px;text-align:center">%ILE</span>
-    <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);width:72px">DATE</span>
+    <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);width:50px;text-align:center">%ILE</span>
+    <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);width:80px">DATE</span>
     <span style="width:28px"></span>
   </div>`;
-  document.getElementById('mock-list').innerHTML=headerRow+[...S.mocks].reverse().map((m,ri)=>{
-    const i=S.mocks.length-1-ri;const total=m.varc+m.dilr+m.qa;
-    return`<div class="data-row" style="gap:8px;min-width:500px">
-      <span style="flex:2;font-size:13px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${m.name}</span>
-      <span style="color:var(--varc);font-family:var(--font-mono);font-size:12px;width:36px;text-align:center">${m.varc}</span>
-      <span style="color:var(--dilr);font-family:var(--font-mono);font-size:12px;width:36px;text-align:center">${m.dilr}</span>
-      <span style="color:var(--quant);font-family:var(--font-mono);font-size:12px;width:36px;text-align:center">${m.qa}</span>
+
+  document.getElementById('mock-list').innerHTML = headerRow + [...S.mocks].reverse().map((m,ri) => {
+    const i = S.mocks.length-1-ri;
+    const total = m.varc+m.dilr+m.qa;
+    return `<div class="data-row" style="gap:12px">
+      <span style="flex:2;font-size:13px;font-weight:500">${m.name}</span>
+      <span style="color:var(--varc);font-family:var(--font-mono);font-size:12px;width:32px;text-align:center">${m.varc}</span>
+      <span style="color:var(--dilr);font-family:var(--font-mono);font-size:12px;width:32px;text-align:center">${m.dilr}</span>
+      <span style="color:var(--quant);font-family:var(--font-mono);font-size:12px;width:32px;text-align:center">${m.qa}</span>
       <span style="font-weight:600;font-size:14px;color:var(--accent);width:50px;text-align:center">${total}</span>
-      <span style="font-size:12px;color:var(--text3);width:46px;text-align:center">${m.percentile?m.percentile:'—'}</span>
-      <span style="font-size:11px;color:var(--text3);width:72px">${m.date}</span>
-      <button class="btn btn-ghost btn-sm btn-icon" onclick="deleteMock(${i})">✕</button>
+      <span style="font-size:12px;color:var(--text3);width:50px;text-align:center">${m.percentile ? m.percentile : '—'}</span>
+      <span style="font-size:11px;color:var(--text3);width:80px">${m.date}</span>
+      <button class="btn btn-ghost btn-sm" onclick="deleteMock(${i})" style="padding:3px 8px;font-size:11px;width:28px">✕</button>
     </div>`;
   }).join('');
-  const legendEl=document.getElementById('mock-trend-legend');
-  if(legendEl&&!legendEl.hasChildNodes()){
-    legendEl.innerHTML=`<span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#e8c97a;display:inline-block"></span>VARC</span><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#7ab8e8;display:inline-block"></span>DILR</span><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#7ae8b0;display:inline-block"></span>QA</span>`;
+
+  // Legend — insert by stable ID, not DOM traversal
+  const legendEl = document.getElementById('mock-trend-legend');
+  if (legendEl && !legendEl.hasChildNodes()) {
+    legendEl.innerHTML = `<span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#e8c97a;display:inline-block"></span>VARC</span><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#7ab8e8;display:inline-block;border-top:2px dashed #7ab8e8"></span>DILR</span><span style="display:flex;align-items:center;gap:4px"><span style="width:16px;height:2px;background:#7ae8b0;display:inline-block;border-top:2px dotted #7ae8b0"></span>QA</span>`;
   }
 }
-function addMock(){
-  const m={date:document.getElementById('m-date').value,name:document.getElementById('m-name').value||'Mock',varc:parseInt(document.getElementById('m-varc').value)||0,dilr:parseInt(document.getElementById('m-dilr').value)||0,qa:parseInt(document.getElementById('m-qa').value)||0,percentile:parseFloat(document.getElementById('m-pct').value)||null};
-  S.mocks.push(m);save();renderMocks();
-  document.getElementById('m-name').value='';document.getElementById('m-pct').value='';
+
+function addMock() {
+  const m = {
+    date: document.getElementById('m-date').value,
+    name: document.getElementById('m-name').value || 'Mock',
+    varc: parseInt(document.getElementById('m-varc').value)||0,
+    dilr: parseInt(document.getElementById('m-dilr').value)||0,
+    qa: parseInt(document.getElementById('m-qa').value)||0,
+    percentile: parseFloat(document.getElementById('m-pct').value)||null
+  };
+  S.mocks.push(m); save(); renderMocks();
+  document.getElementById('m-name').value='';
+  document.getElementById('m-pct').value='';
 }
-function deleteMock(i){S.mocks.splice(i,1);save();renderMocks();}
+
+function deleteMock(i) { S.mocks.splice(i,1); save(); renderMocks(); }
 
 // ─── TOPICS ──────────────────────────────────────────────────────────
-let currentTopicSection='VARC';
-let editingTopic=null;
-function setTopicSection(sec,el){
-  currentTopicSection=sec;
-  document.querySelectorAll('.sec-tab').forEach(b=>b.className='sec-tab');
-  el.className=`sec-tab active-${sec.toLowerCase()}`;
+let currentTopicSection = 'VARC';
+let editingTopic = null;
+
+function setTopicSection(sec, el) {
+  currentTopicSection = sec;
+  document.querySelectorAll('.sec-tab').forEach(b => b.className = 'sec-tab');
+  el.className = `sec-tab active-${sec.toLowerCase()}`;
   renderTopics();
 }
-function renderTopics(){
-  const topics=S.topics[currentTopicSection];
-  const col=SEC_C[currentTopicSection];
-  const sec=currentTopicSection;
-  const SUB_TYPES=[{key:'Class Exercise',weight:15,color:'#7ab8e8'},{key:'Practice Exercise (Basic)',weight:15,color:'#7ae8b0'},{key:'Practice Exercise (Advanced)',weight:20,color:'#e8c97a'},{key:'BMT',weight:20,color:'#e87a7a'},{key:'Round 2',weight:15,color:'#c78ae8'},{key:'Round 3',weight:15,color:'#e8a87a'}];
-  const dataMap={},ptCatMap={},ptOrder=[];
-  topics.forEach((t,i)=>{
-    const pt=t.parentTopic||t.name;const st=t.subType||'';
-    if(!ptCatMap[pt]){ptCatMap[pt]=t.category||'Other';ptOrder.push(pt);}
-    dataMap[pt+'|||'+st]={t,i};
+
+function renderTopics() {
+  const topics = S.topics[currentTopicSection];
+  const col = SEC_C[currentTopicSection];
+  const sec = currentTopicSection;
+
+  const SUB_TYPES = [
+    { key: 'Class Exercise',                 weight: 15, color: '#7ab8e8' },
+    { key: 'Practice Exercise (Basic)',      weight: 15, color: '#7ae8b0' },
+    { key: 'Practice Exercise (Advanced)',   weight: 20, color: '#e8c97a' },
+    { key: 'BMT',                            weight: 20, color: '#e87a7a' },
+    { key: 'Round 2',                        weight: 15, color: '#c78ae8' },
+    { key: 'Round 3',                        weight: 15, color: '#e8a87a' }
+  ];
+
+  // Build lookup: "parentTopic|||subType" -> {t, i}
+  const dataMap = {};
+  const ptCatMap = {};
+  const ptOrder = [];
+  topics.forEach((t, i) => {
+    const pt = t.parentTopic || t.name;
+    const st = t.subType || '';
+    if (!ptCatMap[pt]) { ptCatMap[pt] = t.category || 'Other'; ptOrder.push(pt); }
+    dataMap[pt + '|||' + st] = { t, i };
   });
-  const catOrder=[],catPts={};
-  ptOrder.forEach(pt=>{const cat=ptCatMap[pt];if(!catPts[cat]){catPts[cat]=[];catOrder.push(cat);}if(!catPts[cat].includes(pt))catPts[cat].push(pt);});
-  let html='';
-  catOrder.forEach(cat=>{
-    const pts=catPts[cat];
-    let catTotalPct=0,catTotalSubs=pts.length*6,catDone=0;
-    pts.forEach(pt=>SUB_TYPES.forEach(sub=>{const e=dataMap[pt+'|||'+sub.key];catTotalPct+=e?e.t.pct:0;if(e&&(e.t.done===true||e.t.pct===100))catDone++;}));
-    const catPct=Math.round(catTotalPct/catTotalSubs);
-    const catId='cat-'+sec+cat.replace(/[^a-z0-9]/gi,'_');
-    html+=`<div class="topic-group" style="grid-column:1/-1;margin-bottom:10px">
+
+  // Group parent topics by category (preserve order)
+  const catOrder = [];
+  const catPts = {};
+  ptOrder.forEach(pt => {
+    const cat = ptCatMap[pt];
+    if (!catPts[cat]) { catPts[cat] = []; catOrder.push(cat); }
+    if (!catPts[cat].includes(pt)) catPts[cat].push(pt);
+  });
+
+  let html = '';
+  catOrder.forEach(cat => {
+    const pts = catPts[cat];
+    let catTotalPct = 0, catTotalSubs = pts.length * 6, catDone = 0;
+    pts.forEach(pt => SUB_TYPES.forEach(sub => {
+      const e = dataMap[pt + '|||' + sub.key];
+      catTotalPct += e ? e.t.pct : 0;
+      if (e && (e.t.done === true || e.t.pct === 100)) catDone++;
+    }));
+    const catPct = Math.round(catTotalPct / catTotalSubs);
+    const catId = 'cat-' + sec + cat.replace(/[^a-z0-9]/gi, '_');
+
+    html += `<div class="topic-group" style="grid-column:1/-1;margin-bottom:10px">
       <div class="topic-group-header" onclick="toggleGroup('${catId}')">
         <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
-          <span class="topic-group-arrow" id="arr-${catId}">▼</span>
+          <span class="topic-group-arrow" id="arr-${catId}">&#9660;</span>
           <span class="topic-group-name" style="font-size:14px;white-space:nowrap">${cat}</span>
-          <div class="prog-track" style="width:80px;flex-shrink:0"><div class="prog-fill" style="width:${catPct}%;background:${col}"></div></div>
+          <div class="prog-track" style="width:100px;flex-shrink:0"><div class="prog-fill" style="width:${catPct}%;background:${col}"></div></div>
           <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap">${catPct}%</span>
         </div>
-        <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap;flex-shrink:0">${catDone}/${catTotalSubs}</span>
+        <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap;flex-shrink:0">${catDone}/${catTotalSubs} done</span>
       </div>
       <div class="topic-group-body" id="${catId}" style="display:block;padding:6px 0 2px">`;
-    pts.forEach(pt=>{
-      let ptTotal=0;
-      SUB_TYPES.forEach(sub=>{const e=dataMap[pt+'|||'+sub.key];ptTotal+=e?e.t.pct:0;});
-      const ptPct=Math.round(ptTotal/6);
-      const ptId='pt-'+sec+(cat+pt).replace(/[^a-z0-9]/gi,'_');
-      html+=`<div style="margin-bottom:8px">
-        <div class="topic-group-header" style="background:var(--bg4);padding:8px 12px;border-radius:var(--radius)" onclick="toggleGroup('${ptId}')">
+
+    pts.forEach(pt => {
+      let ptTotal = 0;
+      SUB_TYPES.forEach(sub => { const e = dataMap[pt + '|||' + sub.key]; ptTotal += e ? e.t.pct : 0; });
+      const ptPct = Math.round(ptTotal / 6);
+      const ptId = 'pt-' + sec + (cat + pt).replace(/[^a-z0-9]/gi, '_');
+
+      html += `<div style="margin-bottom:8px">
+        <div class="topic-group-header" style="background:var(--bg4);padding:8px 14px;border-radius:var(--radius)" onclick="toggleGroup('${ptId}')">
           <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0">
-            <span class="topic-group-arrow" id="arr-${ptId}" style="font-size:8px;flex-shrink:0">▼</span>
-            <span style="font-size:12px;font-weight:500;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${pt}</span>
+            <span class="topic-group-arrow" id="arr-${ptId}" style="font-size:8px;flex-shrink:0">&#9660;</span>
+            <span style="font-size:13px;font-weight:500;color:var(--text2)">${pt}</span>
           </div>
-          <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
-            <div class="prog-track" style="width:60px"><div class="prog-fill" style="width:${ptPct}%;background:${col}"></div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <div class="prog-track" style="width:70px"><div class="prog-fill" style="width:${ptPct}%;background:${col}"></div></div>
             <span style="font-size:10px;color:var(--text3);font-family:var(--font-mono)">${ptPct}%</span>
           </div>
         </div>
         <div id="${ptId}" style="display:block">
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:8px 0 4px 12px">
-            ${SUB_TYPES.map(sub=>{
-              const entry=dataMap[pt+'|||'+sub.key];
-              const t=entry?entry.t:{pct:0,attempts:0,correct:0};
-              const idx=entry?entry.i:-1;
-              const isDone=t.done===true||t.pct===100;
-              return'<div class="topic-card" style="border-top:2px solid '+sub.color+';padding:10px 12px">'+
-                '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:4px">'+
-                  '<span style="font-size:10px;font-weight:600;color:'+sub.color+';font-family:var(--font-mono);line-height:1.4">'+sub.key+'</span>'+
-                  '<span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);flex-shrink:0">'+sub.weight+'%</span>'+
-                '</div>'+
-                (idx>=0
-                  ?'<div onclick="toggleSubDone(\''+sec+'\','+idx+')" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;font-family:var(--font-mono);cursor:pointer;user-select:none;border:1px solid;transition:all 0.15s;touch-action:manipulation;'+(isDone?'background:rgba(122,232,176,0.12);color:#7ae8b0;border-color:rgba(122,232,176,0.35)':'background:var(--bg4);color:var(--text3);border-color:var(--border2)')+'">'+( isDone?'✓ Done':'○ Pending')+'</div>'
-                  :'<div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">not tracked</div>')+
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;padding:8px 0 4px 16px">
+            ${(function(){ return SUB_TYPES.map(function(sub) {
+              var entry = dataMap[pt + '|||' + sub.key];
+              var t = entry ? entry.t : { pct: 0, attempts: 0, correct: 0 };
+              var idx = entry ? entry.i : -1;
+              var acc = t.attempts > 0 ? Math.round(t.correct / t.attempts * 100) : 0;
+              var isDone = t.done === true || t.pct === 100;
+              return '<div class="topic-card" style="border-top:2px solid ' + sub.color + ';padding:10px 12px">' +
+                '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:4px">' +
+                  '<span style="font-size:10px;font-weight:600;color:' + sub.color + ';font-family:var(--font-mono);line-height:1.4">' + sub.key + '</span>' +
+                  '<span style="font-size:10px;color:var(--text3);font-family:var(--font-mono);flex-shrink:0">' + sub.weight + '%</span>' +
+                '</div>' +
+                (idx >= 0
+                  ? '<div onclick="toggleSubDone(\'' + sec + '\',' + idx + ')" style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;font-family:var(--font-mono);cursor:pointer;user-select:none;border:1px solid;transition:all 0.15s;' + (isDone ? 'background:rgba(122,232,176,0.12);color:#7ae8b0;border-color:rgba(122,232,176,0.35)' : 'background:var(--bg4);color:var(--text3);border-color:var(--border2)') + '">' + (isDone ? '&#10003; Done' : '&#9675; Pending') + '</div>'
+                  : '<div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">not tracked</div>') +
               '</div>';
-            }).join('')}
+            }).join(''); })()}
           </div>
         </div>
       </div>`;
     });
-    html+='</div></div>';
+
+    html += '</div></div>';
   });
-  document.getElementById('topic-grid').innerHTML=html||'<div class="empty-state">No topics found.</div>';
-}
-function toggleSubDone(sec,i){
-  if(i<0||!S.topics[sec]||!S.topics[sec][i])return;
-  const t=S.topics[sec][i];t.done=!t.done;t.pct=t.done?100:0;save();renderTopics();
-}
-function toggleGroup(id){
-  const body=document.getElementById(id);const arr=document.getElementById('arr-'+id);
-  if(!body)return;const open=body.style.display!=='none';
-  body.style.display=open?'none':'block';
-  if(arr)arr.textContent=open?'▶':'▼';
-}
-function openTopicModal(sec,i){
-  editingTopic={sec,i};const t=S.topics[sec][i];
-  document.getElementById('modal-topic-name').textContent=t.subType?t.parentTopic:t.name;
-  const subLabel=document.getElementById('modal-sub-label');
-  if(subLabel){subLabel.textContent=t.subType?`${t.subType}  ·  ${t.weight}% weight`:'';subLabel.style.display=t.subType?'block':'none';}
-  document.getElementById('modal-pct').value=t.pct;document.getElementById('modal-att').value=t.attempts;document.getElementById('modal-cor').value=t.correct;
-  document.getElementById('topic-modal').classList.add('open');
-}
-function closeModal(){document.getElementById('topic-modal').classList.remove('open');editingTopic=null;}
-function saveTopicModal(){
-  if(!editingTopic)return;const{sec,i}=editingTopic;
-  S.topics[sec][i].pct=Math.min(100,Math.max(0,parseInt(document.getElementById('modal-pct').value)||0));
-  S.topics[sec][i].attempts=parseInt(document.getElementById('modal-att').value)||0;
-  S.topics[sec][i].correct=Math.min(S.topics[sec][i].attempts,parseInt(document.getElementById('modal-cor').value)||0);
-  save();closeModal();renderTopics();
-}
-function addTopic(){
-  const sec=document.getElementById('nt-sec').value;const name=document.getElementById('nt-name').value.trim();const cat=document.getElementById('nt-cat').value.trim()||'Custom';
-  if(!name)return;S.topics[sec].push({name,pct:0,attempts:0,correct:0,category:cat});save();renderTopics();document.getElementById('nt-name').value='';
+
+  document.getElementById('topic-grid').innerHTML = html || '<div class="empty-state">No topics found. Try resetting data in Settings.</div>';
 }
 
-// ─── COMPLETION ──────────────────────────────────────────────────────
-function isSubDone(t){return t.done===true||t.pct===100;}
-function sectionCompletion(sec){const topics=S.topics[sec];if(!topics.length)return 0;const done=topics.filter(isSubDone).length;return Math.round(done/topics.length*100);}
-function parentTopicCompletion(){
-  const groups={};
-  ['VARC','DILR','Quant'].forEach(sec=>{
-    S.topics[sec].forEach(t=>{const pt=t.parentTopic||t.name;const key=sec+'|||'+pt;
-      if(!groups[key])groups[key]={name:pt,section:sec,total:0,done:0};
-      groups[key].total++;if(isSubDone(t))groups[key].done++;
+function topicCardHTML(t, i, col) {
+  const acc = topicAcc(t);
+  return `<div class="topic-card" onclick="openTopicModal('${currentTopicSection}',${i})">
+    <div class="topic-name">${t.name}</div>
+    <div class="prog-track" style="height:5px;margin:6px 0"><div class="prog-fill" style="width:${t.pct}%;background:${col}"></div></div>
+    <div class="topic-meta">${t.pct}% covered · ${t.attempts>0?acc+'% acc':'no attempts'}</div>
+  </div>`;
+}
+
+function toggleSubDone(sec, i) {
+  if (i < 0 || !S.topics[sec] || !S.topics[sec][i]) return;
+  const t = S.topics[sec][i];
+  t.done = !t.done;
+  t.pct = t.done ? 100 : 0;
+  save();
+  renderTopics();
+}
+
+function toggleGroup(id) {
+  const body = document.getElementById(id);
+  const arr = document.getElementById('arr-' + id);
+  if (!body) return;
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  if (arr) arr.textContent = open ? '▶' : '▼';
+}
+
+function openTopicModal(sec, i) {
+  editingTopic = { sec, i };
+  const t = S.topics[sec][i];
+  const displayName = t.subType ? `${t.parentTopic}\n${t.subType}` : t.name;
+  document.getElementById('modal-topic-name').textContent = t.subType ? t.parentTopic : t.name;
+  const subLabel = document.getElementById('modal-sub-label');
+  if (subLabel) {
+    subLabel.textContent = t.subType ? `${t.subType}  ·  ${t.weight}% weight` : '';
+    subLabel.style.display = t.subType ? 'block' : 'none';
+  }
+  document.getElementById('modal-pct').value = t.pct;
+  document.getElementById('modal-att').value = t.attempts;
+  document.getElementById('modal-cor').value = t.correct;
+  document.getElementById('topic-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('topic-modal').classList.remove('open');
+  editingTopic = null;
+}
+
+function saveTopicModal() {
+  if (!editingTopic) return;
+  const { sec, i } = editingTopic;
+  S.topics[sec][i].pct = Math.min(100, Math.max(0, parseInt(document.getElementById('modal-pct').value)||0));
+  S.topics[sec][i].attempts = parseInt(document.getElementById('modal-att').value)||0;
+  S.topics[sec][i].correct = Math.min(S.topics[sec][i].attempts, parseInt(document.getElementById('modal-cor').value)||0);
+  save(); closeModal(); renderTopics();
+}
+
+function addTopic() {
+  const sec = document.getElementById('nt-sec').value;
+  const name = document.getElementById('nt-name').value.trim();
+  const cat = document.getElementById('nt-cat').value.trim() || 'Custom';
+  if (!name) return;
+  S.topics[sec].push({ name, pct:0, attempts:0, correct:0, category: cat });
+  save(); renderTopics();
+  document.getElementById('nt-name').value='';
+}
+
+// ─── COMPLETION TRACKER ──────────────────────────────────────────────
+function isSubDone(t) { return t.done === true || t.pct === 100; }
+
+function sectionCompletion(sec) {
+  const topics = S.topics[sec];
+  if (!topics.length) return 0;
+  const done = topics.filter(isSubDone).length;
+  return Math.round(done / topics.length * 100);
+}
+
+// Group all topics by parentTopic across sections, return completion %
+function parentTopicCompletion() {
+  const groups = {};
+  ['VARC','DILR','Quant'].forEach(sec => {
+    S.topics[sec].forEach(t => {
+      const pt = t.parentTopic || t.name;
+      const key = sec + '|||' + pt;
+      if (!groups[key]) groups[key] = { name: pt, section: sec, total: 0, done: 0 };
+      groups[key].total++;
+      if (isSubDone(t)) groups[key].done++;
     });
   });
-  return Object.values(groups).map(g=>({...g,pct:g.total>0?Math.round(g.done/g.total*100):0}));
+  return Object.values(groups).map(g => ({
+    ...g,
+    pct: g.total > 0 ? Math.round(g.done / g.total * 100) : 0
+  }));
 }
-function renderWeak(){
-  const allParents=parentTopicCompletion();
-  const totalSubs=['VARC','DILR','Quant'].reduce((a,s)=>a+S.topics[s].length,0);
-  const doneSubs=['VARC','DILR','Quant'].reduce((a,s)=>a+S.topics[s].filter(isSubDone).length,0);
-  const overallPct=totalSubs>0?Math.round(doneSubs/totalSubs*100):0;
-  document.getElementById('completion-metrics').innerHTML=[{label:'Overall complete',val:overallPct+'%',sub:doneSubs+' of '+totalSubs+' exercises'},{label:'VARC',val:sectionCompletion('VARC')+'%',sub:S.topics.VARC.filter(isSubDone).length+'/'+S.topics.VARC.length},{label:'DILR',val:sectionCompletion('DILR')+'%',sub:S.topics.DILR.filter(isSubDone).length+'/'+S.topics.DILR.length},{label:'Quant',val:sectionCompletion('Quant')+'%',sub:S.topics.Quant.filter(isSubDone).length+'/'+S.topics.Quant.length}].map(m=>`<div class="metric-card"><div class="metric-label">${m.label}</div><div class="metric-val">${m.val}</div><div class="metric-sub">${m.sub}</div></div>`).join('');
-  mkChart('radarChart',{type:'radar',data:{labels:['VARC','DILR','Quant'],datasets:[{data:['VARC','DILR','Quant'].map(sectionCompletion),borderColor:'#7ae8b0',backgroundColor:'rgba(122,232,176,0.12)',pointRadius:4,pointBackgroundColor:'#7ae8b0'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.r+'% complete'}}},scales:{r:{min:0,max:100,ticks:{color:'#6b6860',font:{size:10,family:"'DM Mono'"},stepSize:25,backdropColor:'transparent'},grid:{color:'rgba(255,255,255,0.06)'},angleLines:{color:'rgba(255,255,255,0.06)'},pointLabels:{color:'#a8a49c',font:{size:12,family:"'Outfit'"}}  }}}});
-  const sorted=[...allParents].sort((a,b)=>a.pct-b.pct);
-  const leastComplete=sorted.filter(p=>p.pct<100).slice(0,6);
-  document.getElementById('weak-list').innerHTML=leastComplete.length?leastComplete.map(p=>{const cls=p.pct===0?'badge-high':p.pct<50?'badge-medium':'badge-low';const label=p.pct===0?'not started':p.pct<50?'in progress':'almost done';return`<div class="data-row" style="gap:8px"><span style="flex:1;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</span><span class="badge badge-${p.section.toLowerCase()}">${p.section}</span><span style="font-family:var(--font-mono);font-size:13px;font-weight:600">${p.pct}%</span><span class="badge ${cls}">${label}</span></div>`;}).join(''):'<div class="empty-state">🎉 All complete!</div>';
-  document.getElementById('all-weak-list').innerHTML=sorted.map(p=>`<div class="data-row" style="gap:8px"><span style="flex:1;font-size:13px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</span><span class="badge badge-${p.section.toLowerCase()}">${p.section}</span><span style="font-family:var(--font-mono);font-size:12px;color:var(--text3)">${p.done}/${p.total}</span><div class="prog-track" style="width:70px;flex-shrink:0"><div class="prog-fill" style="width:${p.pct}%;background:${SEC_C[p.section]}"></div></div><span style="font-family:var(--font-mono);font-size:13px;font-weight:600;width:38px;text-align:right;color:${p.pct===100?'var(--success)':'var(--text)'}">${p.pct}%</span></div>`).join('');
+
+function renderWeak() {
+  // Overall metrics
+  const allParents = parentTopicCompletion();
+  const totalSubs = ['VARC','DILR','Quant'].reduce((a,s) => a + S.topics[s].length, 0);
+  const doneSubs = ['VARC','DILR','Quant'].reduce((a,s) => a + S.topics[s].filter(isSubDone).length, 0);
+  const overallPct = totalSubs > 0 ? Math.round(doneSubs / totalSubs * 100) : 0;
+
+  document.getElementById('completion-metrics').innerHTML = [
+    { label: 'Overall complete', val: overallPct + '%', sub: doneSubs + ' of ' + totalSubs + ' exercises' },
+    { label: 'VARC', val: sectionCompletion('VARC') + '%', sub: S.topics.VARC.filter(isSubDone).length + '/' + S.topics.VARC.length },
+    { label: 'DILR', val: sectionCompletion('DILR') + '%', sub: S.topics.DILR.filter(isSubDone).length + '/' + S.topics.DILR.length },
+    { label: 'Quant', val: sectionCompletion('Quant') + '%', sub: S.topics.Quant.filter(isSubDone).length + '/' + S.topics.Quant.length }
+  ].map(m => `<div class="metric-card"><div class="metric-label">${m.label}</div><div class="metric-val">${m.val}</div><div class="metric-sub">${m.sub}</div></div>`).join('');
+
+  // Radar: completion % per section
+  mkChart('radarChart', {
+    type: 'radar',
+    data: {
+      labels: ['VARC', 'DILR', 'Quant'],
+      datasets: [{
+        data: ['VARC','DILR','Quant'].map(sectionCompletion),
+        borderColor: '#7ae8b0', backgroundColor: 'rgba(122,232,176,0.12)', pointRadius: 4, pointBackgroundColor: '#7ae8b0'
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.r + '% complete' } } },
+      scales: { r: { min:0, max:100, ticks: { color:'#6b6860', font:{size:10,family:"'DM Mono'"}, stepSize:25, backdropColor:'transparent' }, grid:{color:'rgba(255,255,255,0.06)'}, angleLines:{color:'rgba(255,255,255,0.06)'}, pointLabels:{color:'#a8a49c',font:{size:12,family:"'Outfit'"}} } }
+    }
+  });
+
+  // Least complete parent topics (lowest % first, exclude fully done)
+  const sorted = [...allParents].sort((a,b) => a.pct - b.pct);
+  const leastComplete = sorted.filter(p => p.pct < 100).slice(0, 6);
+  document.getElementById('weak-list').innerHTML = leastComplete.length ? leastComplete.map(p => {
+    const cls = p.pct === 0 ? 'badge-high' : p.pct < 50 ? 'badge-medium' : 'badge-low';
+    const label = p.pct === 0 ? 'not started' : p.pct < 50 ? 'in progress' : 'almost done';
+    return `<div class="data-row" style="gap:8px">
+      <span style="flex:1;font-size:13px">${p.name}</span>
+      <span class="badge badge-${p.section.toLowerCase()}">${p.section}</span>
+      <span style="font-family:var(--font-mono);font-size:13px;font-weight:600">${p.pct}%</span>
+      <span class="badge ${cls}">${label}</span>
+    </div>`;
+  }).join('') : '<div class="empty-state">🎉 Everything is complete!</div>';
+
+  // All parent topics by completion
+  document.getElementById('all-weak-list').innerHTML = sorted.map(p => `
+    <div class="data-row" style="gap:8px">
+      <span style="flex:1;font-size:13px">${p.name}</span>
+      <span class="badge badge-${p.section.toLowerCase()}">${p.section}</span>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--text3)">${p.done}/${p.total}</span>
+      <div class="prog-track" style="width:90px;flex-shrink:0"><div class="prog-fill" style="width:${p.pct}%;background:${SEC_C[p.section]}"></div></div>
+      <span style="font-family:var(--font-mono);font-size:13px;font-weight:600;width:42px;text-align:right;color:${p.pct===100?'var(--success)':'var(--text)'}">${p.pct}%</span>
+    </div>`).join('');
 }
 
 // ─── TARGETS ─────────────────────────────────────────────────────────
-function renderTargets(){
-  const lm=latestMock();const secs=['VARC','DILR','Quant'];const targets=[S.targets.varc,S.targets.dilr,S.targets.qa];const maxes=[72,60,66];
-  document.getElementById('target-cards').innerHTML=secs.map((s,i)=>{
-    const cur=lm?(s==='VARC'?lm.varc:s==='DILR'?lm.dilr:lm.qa):0;const tgt=targets[i];const pct=Math.min(100,Math.round(cur/tgt*100));const diff=cur-tgt;
-    return`<div class="target-card"><div class="target-sec-label" style="color:${SEC_C[s]}">${s}</div><div class="target-score-row"><span class="target-score" style="color:${SEC_C[s]}">${cur}</span><span class="target-of">/ ${tgt}</span></div><div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">max: ${maxes[i]}</div><div class="target-bar-track"><div class="target-bar-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div><div class="target-diff" style="color:${diff>=0?'var(--success)':diff>=-5?'var(--warn)':'var(--danger)'}">${lm?(diff>=0?'▲ '+diff+' ahead':'▼ '+Math.abs(diff)+' to go'):'No data'}</div></div>`;
+function renderTargets() {
+  const lm = latestMock();
+  const secs = ['VARC','DILR','Quant'];
+  const targets = [S.targets.varc, S.targets.dilr, S.targets.qa];
+  const maxes = [72, 60, 66];
+
+  document.getElementById('target-cards').innerHTML = secs.map((s,i) => {
+    const cur = lm ? (s==='VARC'?lm.varc:s==='DILR'?lm.dilr:lm.qa) : 0;
+    const tgt = targets[i];
+    const pct = Math.min(100, Math.round(cur/tgt*100));
+    const diff = cur - tgt;
+    return `<div class="target-card">
+      <div class="target-sec-label" style="color:${SEC_C[s]}">${s}</div>
+      <div class="target-score-row">
+        <span class="target-score" style="color:${SEC_C[s]}">${cur}</span>
+        <span class="target-of">/ ${tgt} target</span>
+      </div>
+      <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">max: ${maxes[i]}</div>
+      <div class="target-bar-track"><div class="target-bar-fill" style="width:${pct}%;background:${SEC_C[s]}"></div></div>
+      <div class="target-diff" style="color:${diff>=0?'var(--success)':diff>=-5?'var(--warn)':'var(--danger)'}">${lm?(diff>=0?'▲ '+diff+' ahead':'▼ '+Math.abs(diff)+' to go'):'No mock data'}</div>
+    </div>`;
   }).join('');
-  const lastPct=lm&&lm.percentile?lm.percentile:null;
-  document.getElementById('target-cards').innerHTML+=`<div class="target-card"><div class="target-sec-label" style="color:var(--text2)">Percentile</div><div class="target-score-row"><span class="target-score">${lastPct||'—'}</span><span class="target-of">/ ${S.targets.percentile}%ile</span></div><div class="target-bar-track"><div class="target-bar-fill" style="width:${lastPct?Math.min(100,Math.round(lastPct/S.targets.percentile*100)):0}%;background:var(--text2)"></div></div><div class="target-diff" style="color:var(--text3)">${lastPct?(lastPct>=S.targets.percentile?'▲ On track':'▼ '+(S.targets.percentile-lastPct).toFixed(2)+' to go'):'Add percentile'}</div></div>`;
-  document.getElementById('t-varc').value=S.targets.varc;document.getElementById('t-dilr').value=S.targets.dilr;document.getElementById('t-qa').value=S.targets.qa;document.getElementById('t-pct').value=S.targets.percentile;
-  document.getElementById('t-daily-hrs').value=S.targets.dailyHrs;document.getElementById('t-varc-hrs').value=S.targets.varcHrs;document.getElementById('t-dilr-hrs').value=S.targets.dilrHrs;document.getElementById('t-quant-hrs').value=S.targets.quantHrs;
-  const dl=daysLeft();const done=fmt(totalHours());const needed=S.targets.dailyHrs*dl;const deficit=Math.max(0,needed-done);
-  document.getElementById('daily-target-summary').innerHTML=`<div class="flex gap-12" style="flex-wrap:wrap;margin-top:8px"><div class="metric-card" style="flex:1;min-width:100px"><div class="metric-label">Done so far</div><div class="metric-val" style="font-size:20px">${done}h</div></div><div class="metric-card" style="flex:1;min-width:100px"><div class="metric-label">Needed</div><div class="metric-val" style="font-size:20px">${needed}h</div></div><div class="metric-card" style="flex:1;min-width:100px"><div class="metric-label">Still to do</div><div class="metric-val" style="font-size:20px;color:${deficit>0?'var(--warn)':'var(--success)'}">${deficit}h</div></div><div class="metric-card" style="flex:1;min-width:100px"><div class="metric-label">Adj. pace</div><div class="metric-val" style="font-size:20px">${dl>0?fmt(deficit/dl):'0'}h</div><div class="metric-sub">per day</div></div></div>`;
-  document.getElementById('countdown-block').innerHTML=`<div style="font-size:48px;font-weight:600;color:var(--accent);font-family:var(--font-head);letter-spacing:-2px;margin-bottom:4px">${dl}</div><div style="font-size:13px;color:var(--text3);margin-bottom:16px">days until ${S.config.examDate}</div><div class="prog-row"><span class="prog-label" style="width:120px">Mocks done</span><div class="prog-track"><div class="prog-fill" style="width:${S.phases.length?Math.min(100,Math.round(S.mocks.length/S.phases.reduce((a,p)=>a+p.targetMocks,0)*100)):0}%;background:var(--varc)"></div></div><span class="prog-pct">${S.mocks.length}</span></div>`;
-  const today=new Date().toISOString().slice(0,10);
-  document.getElementById('milestone-list').innerHTML=S.milestones.length?S.milestones.map((m,i)=>`<div class="tl-item"><div class="tl-dot ${m.done?'done':m.date<=today?'active':''}"></div><div class="tl-date">${m.date}</div><div class="tl-label">${m.name}</div><div style="display:flex;gap:6px;margin-top:3px"><button class="btn btn-ghost btn-sm" style="font-size:10px;padding:2px 8px" onclick="toggleMilestone(${i})">${m.done?'Undo':'Done'}</button><button class="btn btn-ghost btn-sm" style="font-size:10px;padding:2px 8px" onclick="deleteMilestone(${i})">✕</button></div></div>`).join(''):'<div class="empty-state">No milestones yet</div>';
-  document.getElementById('ms-date').value=new Date().toISOString().slice(0,10);
-  document.getElementById('phase-list').innerHTML=S.phases.length?S.phases.map((p,i)=>{const phaseMocks=S.mocks.filter(m=>m.date>=p.start&&m.date<=p.end).length;const pct=Math.min(100,Math.round(phaseMocks/p.targetMocks*100));return`<div class="data-row" style="gap:8px"><span style="flex:2;font-size:13px;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.name}</span><span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);white-space:nowrap">${p.start}→${p.end}</span><div style="display:flex;align-items:center;gap:6px;flex:1;min-width:60px"><div class="prog-track" style="flex:1"><div class="prog-fill" style="width:${pct}%;background:var(--dilr)"></div></div><span style="font-size:12px;font-family:var(--font-mono);color:var(--text3)">${phaseMocks}/${p.targetMocks}</span></div><button class="btn btn-ghost btn-sm btn-icon" onclick="deletePhase(${i})">✕</button></div>`;}).join(''):'<div class="empty-state">No phases planned</div>';
-  document.getElementById('ph-start').value=new Date().toISOString().slice(0,10);
+
+  // Percentile target card
+  const lastPct = lm && lm.percentile ? lm.percentile : null;
+  document.getElementById('target-cards').innerHTML += `<div class="target-card">
+    <div class="target-sec-label" style="color:var(--text2)">Percentile</div>
+    <div class="target-score-row">
+      <span class="target-score">${lastPct || '—'}</span>
+      <span class="target-of">/ ${S.targets.percentile}%ile</span>
+    </div>
+    <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">target</div>
+    <div class="target-bar-track"><div class="target-bar-fill" style="width:${lastPct?Math.min(100,Math.round(lastPct/S.targets.percentile*100)):0}%;background:var(--text2)"></div></div>
+    <div class="target-diff" style="color:var(--text3)">${lastPct ? (lastPct>=S.targets.percentile?'▲ On track':'▼ '+(S.targets.percentile-lastPct).toFixed(2)+' to go') : 'Add percentile to mocks'}</div>
+  </div>`;
+
+  // Populate target inputs
+  document.getElementById('t-varc').value = S.targets.varc;
+  document.getElementById('t-dilr').value = S.targets.dilr;
+  document.getElementById('t-qa').value = S.targets.qa;
+  document.getElementById('t-pct').value = S.targets.percentile;
+  document.getElementById('t-daily-hrs').value = S.targets.dailyHrs;
+  document.getElementById('t-varc-hrs').value = S.targets.varcHrs;
+  document.getElementById('t-dilr-hrs').value = S.targets.dilrHrs;
+  document.getElementById('t-quant-hrs').value = S.targets.quantHrs;
+
+  // Daily target summary
+  const dl = daysLeft();
+  const done = fmt(totalHours());
+  const needed = S.targets.dailyHrs * dl;
+  const deficit = Math.max(0, needed - done);
+  document.getElementById('daily-target-summary').innerHTML = `
+    <div class="flex gap-12" style="flex-wrap:wrap;margin-top:8px">
+      <div class="metric-card" style="flex:1;min-width:120px"><div class="metric-label">Done so far</div><div class="metric-val" style="font-size:20px">${done}h</div></div>
+      <div class="metric-card" style="flex:1;min-width:120px"><div class="metric-label">Needed (at target)</div><div class="metric-val" style="font-size:20px">${needed}h</div></div>
+      <div class="metric-card" style="flex:1;min-width:120px"><div class="metric-label">Still to do</div><div class="metric-val" style="font-size:20px;color:${deficit>0?'var(--warn)':'var(--success)'}">${deficit}h</div></div>
+      <div class="metric-card" style="flex:1;min-width:120px"><div class="metric-label">Adj. daily pace</div><div class="metric-val" style="font-size:20px">${dl>0?fmt(deficit/dl):'0'}h</div><div class="metric-sub">to meet target</div></div>
+    </div>`;
+
+  // Countdown
+  document.getElementById('countdown-block').innerHTML = `
+    <div style="font-size:48px;font-weight:600;color:var(--accent);font-family:var(--font-head);letter-spacing:-2px;margin-bottom:4px">${dl}</div>
+    <div style="font-size:13px;color:var(--text3);margin-bottom:16px">days until ${S.config.examDate}</div>
+    <div class="prog-row"><span class="prog-label" style="width:130px">Mocks completed</span><div class="prog-track"><div class="prog-fill" style="width:${S.phases.length?Math.min(100,Math.round(S.mocks.length/S.phases.reduce((a,p)=>a+p.targetMocks,0)*100)):0}%;background:var(--varc)"></div></div><span class="prog-pct">${S.mocks.length}</span></div>
+    <div class="prog-row"><span class="prog-label" style="width:130px">Hours completed</span><div class="prog-track"><div class="prog-fill" style="width:${Math.min(100,Math.round(totalHours()/(S.targets.dailyHrs*(dl+totalHours()/Math.max(1,S.targets.dailyHrs)))*100))}%;background:var(--quant)"></div></div><span class="prog-pct">${fmt(totalHours())}h</span></div>
+  `;
+
+  // Milestones
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('milestone-list').innerHTML = S.milestones.length
+    ? S.milestones.map((m,i) => `<div class="tl-item">
+        <div class="tl-dot ${m.done?'done':m.date<=today?'active':''}"></div>
+        <div class="tl-date">${m.date}</div>
+        <div class="tl-label">${m.name}</div>
+        <div style="display:flex;gap:6px;margin-top:3px">
+          <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:2px 8px" onclick="toggleMilestone(${i})">${m.done?'Undo':'Done'}</button>
+          <button class="btn btn-ghost btn-sm" style="font-size:10px;padding:2px 8px" onclick="deleteMilestone(${i})">✕</button>
+        </div>
+      </div>`).join('')
+    : '<div class="empty-state">No milestones yet</div>';
+
+  document.getElementById('ms-date').value = new Date().toISOString().slice(0,10);
+
+  // Phases
+  document.getElementById('phase-list').innerHTML = S.phases.length
+    ? S.phases.map((p,i) => {
+        const phaseMocks = S.mocks.filter(m => m.date >= p.start && m.date <= p.end).length;
+        const pct = Math.min(100, Math.round(phaseMocks/p.targetMocks*100));
+        return `<div class="data-row" style="gap:10px">
+          <span style="flex:2;font-size:13px;font-weight:500">${p.name}</span>
+          <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">${p.start} → ${p.end}</span>
+          <div style="display:flex;align-items:center;gap:6px;flex:1">
+            <div class="prog-track" style="flex:1"><div class="prog-fill" style="width:${pct}%;background:var(--dilr)"></div></div>
+            <span style="font-size:12px;font-family:var(--font-mono);color:var(--text3)">${phaseMocks}/${p.targetMocks}</span>
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="deletePhase(${i})" style="padding:3px 8px;font-size:11px">✕</button>
+        </div>`;
+      }).join('')
+    : '<div class="empty-state">No phases planned yet</div>';
+
+  document.getElementById('ph-start').value = new Date().toISOString().slice(0,10);
 }
-function saveTargets(){S.targets.varc=parseInt(document.getElementById('t-varc').value)||55;S.targets.dilr=parseInt(document.getElementById('t-dilr').value)||42;S.targets.qa=parseInt(document.getElementById('t-qa').value)||50;S.targets.percentile=parseFloat(document.getElementById('t-pct').value)||99;save();renderTargets();}
-function saveDailyTargets(){S.targets.dailyHrs=parseFloat(document.getElementById('t-daily-hrs').value)||6;S.targets.varcHrs=parseFloat(document.getElementById('t-varc-hrs').value)||2;S.targets.dilrHrs=parseFloat(document.getElementById('t-dilr-hrs').value)||2;S.targets.quantHrs=parseFloat(document.getElementById('t-quant-hrs').value)||2;save();renderTargets();}
-function addMilestone(){const name=document.getElementById('ms-name').value.trim();const date=document.getElementById('ms-date').value;if(!name||!date)return;S.milestones.push({name,date,done:false});S.milestones.sort((a,b)=>a.date.localeCompare(b.date));save();renderTargets();document.getElementById('ms-name').value='';}
-function toggleMilestone(i){S.milestones[i].done=!S.milestones[i].done;save();renderTargets();}
-function deleteMilestone(i){S.milestones.splice(i,1);save();renderTargets();}
-function addPhase(){const name=document.getElementById('ph-name').value.trim();const start=document.getElementById('ph-start').value;const end=document.getElementById('ph-end').value;const targetMocks=parseInt(document.getElementById('ph-mocks').value)||5;if(!name||!start||!end)return;S.phases.push({name,start,end,targetMocks});S.phases.sort((a,b)=>a.start.localeCompare(b.start));save();renderTargets();document.getElementById('ph-name').value='';document.getElementById('ph-end').value='';}
-function deletePhase(i){S.phases.splice(i,1);save();renderTargets();}
+
+function saveTargets() {
+  S.targets.varc = parseInt(document.getElementById('t-varc').value)||55;
+  S.targets.dilr = parseInt(document.getElementById('t-dilr').value)||42;
+  S.targets.qa = parseInt(document.getElementById('t-qa').value)||50;
+  S.targets.percentile = parseFloat(document.getElementById('t-pct').value)||99;
+  save(); renderTargets();
+}
+
+function saveDailyTargets() {
+  S.targets.dailyHrs = parseFloat(document.getElementById('t-daily-hrs').value)||6;
+  S.targets.varcHrs = parseFloat(document.getElementById('t-varc-hrs').value)||2;
+  S.targets.dilrHrs = parseFloat(document.getElementById('t-dilr-hrs').value)||2;
+  S.targets.quantHrs = parseFloat(document.getElementById('t-quant-hrs').value)||2;
+  save(); renderTargets();
+}
+
+function addMilestone() {
+  const name = document.getElementById('ms-name').value.trim();
+  const date = document.getElementById('ms-date').value;
+  if (!name || !date) return;
+  S.milestones.push({ name, date, done: false });
+  S.milestones.sort((a,b) => a.date.localeCompare(b.date));
+  save(); renderTargets();
+  document.getElementById('ms-name').value='';
+}
+
+function toggleMilestone(i) { S.milestones[i].done = !S.milestones[i].done; save(); renderTargets(); }
+function deleteMilestone(i) { S.milestones.splice(i,1); save(); renderTargets(); }
+
+function addPhase() {
+  const name = document.getElementById('ph-name').value.trim();
+  const start = document.getElementById('ph-start').value;
+  const end = document.getElementById('ph-end').value;
+  const targetMocks = parseInt(document.getElementById('ph-mocks').value)||5;
+  if (!name || !start || !end) return;
+  S.phases.push({ name, start, end, targetMocks });
+  S.phases.sort((a,b) => a.start.localeCompare(b.start));
+  save(); renderTargets();
+  document.getElementById('ph-name').value='';
+  document.getElementById('ph-end').value='';
+}
+
+function deletePhase(i) { S.phases.splice(i,1); save(); renderTargets(); }
 
 // ─── REVISION ────────────────────────────────────────────────────────
-let revFilter='all';
-function renderRevision(){
-  document.getElementById('r-due').value=new Date().toISOString().slice(0,10);
-  let list=[...S.revisions].sort((a,b)=>{if(a.done!==b.done)return a.done?1:-1;const po={High:0,Medium:1,Low:2};return po[a.priority]-po[b.priority];});
-  if(revFilter==='pending')list=list.filter(r=>!r.done);
-  if(revFilter==='done')list=list.filter(r=>r.done);
-  const priC={High:'var(--danger)',Medium:'var(--warn)',Low:'var(--success)'};
-  document.getElementById('rev-list').innerHTML=list.length?list.map((r,i)=>{const orig=S.revisions.indexOf(r);return`<div class="card" style="margin-bottom:8px;padding:12px 16px"><div class="check-row" style="justify-content:space-between"><div class="check-row" style="gap:10px;flex:1;min-width:0"><input type="checkbox" ${r.done?'checked':''} onchange="toggleRevision(${orig})"><div style="min-width:0"><div style="font-size:13px;font-weight:500;${r.done?'text-decoration:line-through;color:var(--text3)':''}overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.topic}</div><div style="font-size:11px;color:var(--text3);margin-top:2px">${r.section} · Due ${r.due}${r.note?' · '+r.note:''}</div></div></div><div class="flex gap-8 items-center"><span class="badge" style="background:${priC[r.priority]}18;color:${priC[r.priority]}">${r.priority}</span><button class="btn btn-ghost btn-sm btn-icon" onclick="deleteRevision(${orig})">✕</button></div></div></div>`;}).join(''):'<div class="empty-state">No tasks in this view</div>';
+let revFilter = 'all';
+
+function renderRevision() {
+  document.getElementById('r-due').value = new Date().toISOString().slice(0,10);
+  let list = [...S.revisions].sort((a,b) => {
+    if (a.done !== b.done) return a.done ? 1 : -1;
+    const po = {High:0,Medium:1,Low:2};
+    return po[a.priority] - po[b.priority];
+  });
+  if (revFilter === 'pending') list = list.filter(r => !r.done);
+  if (revFilter === 'done') list = list.filter(r => r.done);
+
+  const priC = {High:'var(--danger)',Medium:'var(--warn)',Low:'var(--success)'};
+  document.getElementById('rev-list').innerHTML = list.length ? list.map((r,i) => {
+    const orig = S.revisions.indexOf(r);
+    return `<div class="card" style="margin-bottom:8px;padding:12px 16px">
+      <div class="check-row" style="justify-content:space-between">
+        <div class="check-row">
+          <input type="checkbox" ${r.done?'checked':''} onchange="toggleRevision(${orig})">
+          <div>
+            <div style="font-size:13px;font-weight:500;${r.done?'text-decoration:line-through;color:var(--text3)':''}">${r.topic}</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:2px">${r.section} · Due ${r.due}${r.note?' · '+r.note:''}</div>
+          </div>
+        </div>
+        <div class="flex gap-8 items-center">
+          <span class="badge" style="background:${priC[r.priority]}18;color:${priC[r.priority]}">${r.priority}</span>
+          <button class="btn btn-ghost btn-sm" onclick="deleteRevision(${orig})" style="padding:3px 8px;font-size:11px">✕</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') : '<div class="empty-state">No tasks in this view</div>';
 }
-function filterRevision(f,el){revFilter=f;document.querySelectorAll('.pill-opt').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderRevision();}
-function addRevision(){const t=document.getElementById('r-topic').value.trim();const s=document.getElementById('r-sec').value;const d=document.getElementById('r-due').value;const p=document.getElementById('r-pri').value;const n=document.getElementById('r-note').value.trim();if(!t||!d)return;S.revisions.push({topic:t,section:s,due:d,priority:p,note:n,done:false});save();renderRevision();document.getElementById('r-topic').value='';document.getElementById('r-note').value='';}
-function toggleRevision(i){S.revisions[i].done=!S.revisions[i].done;save();renderRevision();}
-function deleteRevision(i){S.revisions.splice(i,1);save();renderRevision();}
+
+function filterRevision(f, el) {
+  revFilter = f;
+  document.querySelectorAll('.pill-opt').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderRevision();
+}
+
+function addRevision() {
+  const t=document.getElementById('r-topic').value.trim();
+  const s=document.getElementById('r-sec').value;
+  const d=document.getElementById('r-due').value;
+  const p=document.getElementById('r-pri').value;
+  const n=document.getElementById('r-note').value.trim();
+  if (!t||!d) return;
+  S.revisions.push({ topic:t, section:s, due:d, priority:p, note:n, done:false });
+  save(); renderRevision();
+  document.getElementById('r-topic').value='';
+  document.getElementById('r-note').value='';
+}
+
+function toggleRevision(i) { S.revisions[i].done = !S.revisions[i].done; save(); renderRevision(); }
+function deleteRevision(i) { S.revisions.splice(i,1); save(); renderRevision(); }
 
 // ─── SETTINGS ────────────────────────────────────────────────────────
-function renderSettings(){document.getElementById('cfg-name').value=S.config.name;document.getElementById('cfg-examdate').value=S.config.examDate;document.getElementById('cfg-college').value=S.config.college;}
-function saveSettings(){
-  S.config.name=document.getElementById('cfg-name').value.trim();
-  S.config.examDate=document.getElementById('cfg-examdate').value||'2026-11-29';
-  S.config.college=document.getElementById('cfg-college').value.trim();
-  S.config.examYear='CAT '+(S.config.examDate?new Date(S.config.examDate).getFullYear():'2026');
+function renderSettings() {
+  document.getElementById('cfg-name').value = S.config.name;
+  document.getElementById('cfg-examdate').value = S.config.examDate;
+  document.getElementById('cfg-college').value = S.config.college;
+}
+
+function saveSettings() {
+  S.config.name = document.getElementById('cfg-name').value.trim();
+  S.config.examDate = document.getElementById('cfg-examdate').value || '2026-11-29';
+  S.config.college = document.getElementById('cfg-college').value.trim();
+  S.config.examYear = 'CAT ' + (S.config.examDate ? new Date(S.config.examDate).getFullYear() : '2026');
   save();
-  document.getElementById('sidebar-exam-year').textContent=S.config.examYear;
+  document.getElementById('sidebar-exam-year').textContent = S.config.examYear;
   updateSidebarDays();
   alert('Settings saved!');
 }
-function exportData(){const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`cat-tracker-backup-${new Date().toISOString().slice(0,10)}.json`;a.click();}
-function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=ev=>{try{S=JSON.parse(ev.target.result);save();location.reload();}catch{alert('Invalid backup file.');}};reader.readAsText(file);}
-function confirmReset(){if(confirm('This will delete ALL your data. Are you sure?')){localStorage.removeItem(STORAGE_KEY);location.reload();}}
+
+function exportData() {
+  const blob = new Blob([JSON.stringify(S, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `cat-tracker-backup-${new Date().toISOString().slice(0,10)}.json`; a.click();
+}
+
+function importData(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      S = JSON.parse(ev.target.result);
+      save(); location.reload();
+    } catch { alert('Invalid backup file.'); }
+  };
+  reader.readAsText(file);
+}
+
+function confirmReset() {
+  if (confirm('This will delete ALL your data. Are you sure?')) {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+// ─── CLOUD CODE SYNC ─────────────────────────────────────────────────
+// To keep codes small, we store only data that differs from defaults:
+// - config, mocks, studyLogs, revisions, milestones, phases, targets (always small)
+// - topics: only the ones marked done or with progress (skip the hundreds of empty defaults)
+function buildSyncPayload() {
+  const changedTopics = {};
+  ['VARC','DILR','Quant'].forEach(sec => {
+    S.topics[sec].forEach((t, i) => {
+      if (t.done || t.pct > 0 || t.attempts > 0) {
+        if (!changedTopics[sec]) changedTopics[sec] = {};
+        // store by index → compact [pct, done?1:0, attempts, correct]
+        changedTopics[sec][i] = [t.pct || 0, t.done ? 1 : 0, t.attempts || 0, t.correct || 0];
+      }
+    });
+  });
+  return {
+    v: 10,
+    config: S.config,
+    targets: S.targets,
+    studyLogs: S.studyLogs,
+    mocks: S.mocks,
+    revisions: S.revisions,
+    milestones: S.milestones,
+    phases: S.phases,
+    t: changedTopics
+  };
+}
+
+function applySyncPayload(p) {
+  // Start from a fresh default state, then layer the saved data on top
+  const fresh = JSON.parse(JSON.stringify(DEFAULT_STATE));
+  if (p.config) fresh.config = p.config;
+  if (p.targets) fresh.targets = p.targets;
+  if (p.studyLogs) fresh.studyLogs = p.studyLogs;
+  if (p.mocks) fresh.mocks = p.mocks;
+  if (p.revisions) fresh.revisions = p.revisions;
+  if (p.milestones) fresh.milestones = p.milestones;
+  if (p.phases) fresh.phases = p.phases;
+  // Re-apply changed topics by index
+  if (p.t) {
+    ['VARC','DILR','Quant'].forEach(sec => {
+      if (p.t[sec]) {
+        Object.entries(p.t[sec]).forEach(([i, vals]) => {
+          const idx = parseInt(i);
+          if (fresh.topics[sec] && fresh.topics[sec][idx]) {
+            const [pct, done, attempts, correct] = vals;
+            fresh.topics[sec][idx].pct = pct;
+            fresh.topics[sec][idx].done = done === 1;
+            fresh.topics[sec][idx].attempts = attempts;
+            fresh.topics[sec][idx].correct = correct;
+          }
+        });
+      }
+    });
+  }
+  return fresh;
+}
+
+function generateSyncCode() {
+  try {
+    const json = JSON.stringify(buildSyncPayload());
+    const code = 'CAT2' + btoa(unescape(encodeURIComponent(json)));
+    const out = document.getElementById('sync-code-out');
+    out.value = code;
+    // Show size hint
+    const sizeEl = document.getElementById('sync-size');
+    if (sizeEl) sizeEl.textContent = code.length + ' characters';
+  } catch (e) {
+    document.getElementById('sync-code-out').value = 'Error generating code.';
+  }
+}
+
+function copySyncCode() {
+  const ta = document.getElementById('sync-code-out');
+  if (!ta.value) { generateSyncCode(); }
+  ta.select();
+  const btn = document.getElementById('sync-copy-btn');
+  const done = () => { btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = 'Copy code', 1800); };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(ta.value).then(done).catch(() => { document.execCommand('copy'); done(); });
+  } else {
+    document.execCommand('copy'); done();
+  }
+}
+
+function loadSyncCode() {
+  const status = document.getElementById('sync-status');
+  let code = document.getElementById('sync-code-in').value.trim();
+  if (!code) { status.textContent = 'Paste a code first.'; status.style.color = 'var(--warn)'; return; }
+  try {
+    let parsed;
+    if (code.startsWith('CAT2')) {
+      // New compact format
+      const json = decodeURIComponent(escape(atob(code.slice(4))));
+      parsed = applySyncPayload(JSON.parse(json));
+    } else if (code.startsWith('CAT1')) {
+      // Old full format
+      const json = decodeURIComponent(escape(atob(code.slice(4))));
+      parsed = JSON.parse(json);
+    } else {
+      throw new Error('bad prefix');
+    }
+    if (!parsed.topics || !parsed.config) throw new Error('missing data');
+    if (!confirm('This will REPLACE all data on this device with the code\'s data. Continue?')) return;
+    S = parsed;
+    save();
+    status.textContent = '✓ Data loaded! Reloading…';
+    status.style.color = 'var(--success)';
+    setTimeout(() => location.reload(), 900);
+  } catch (e) {
+    status.textContent = 'Could not read this code — it may be incomplete or corrupted.';
+    status.style.color = 'var(--danger)';
+  }
+}
 
 // ─── SIDEBAR UTILS ───────────────────────────────────────────────────
-function updateSidebarDays(){
-  const dl=daysLeft();
-  document.getElementById('sidebar-days-left').textContent=dl>0?dl+'d left':'Exam day!';
-  document.getElementById('sidebar-exam-year').textContent=S.config.examYear||'CAT 2026';
+function updateSidebarDays() {
+  const dl = daysLeft();
+  document.getElementById('sidebar-days-left').textContent = dl > 0 ? dl + 'd left' : 'Exam day!';
+  document.getElementById('sidebar-exam-year').textContent = S.config.examYear || 'CAT 2026';
 }
 
 // ─── INIT ────────────────────────────────────────────────────────────
